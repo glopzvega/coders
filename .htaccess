@@ -1,0 +1,5 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /coders/
+
+RewriteRule ^([^/.]+)/$ index.php?module=$1 [L]
