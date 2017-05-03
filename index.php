@@ -7,6 +7,8 @@
       $module = $_GET["module"];
     }    
 
+    define("APP", "/coders");
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">
