@@ -18,7 +18,7 @@
       <li>
         <div class="row">
             <div class="col s4">                          
-              <img src="../img/logo.png" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">              
+              <img src="img/logo.png" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">              
             </div>
             <div class="col s8">
               <b class="username">Gerardo A Lopez Vega</b>
