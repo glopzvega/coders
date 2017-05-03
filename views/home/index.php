@@ -3,7 +3,7 @@
     <i class="material-icons">face</i>
     Mi Perfil</a></li>  
   <li class="divider"></li>
-  <li><a href="#!" class="pink-text">
+  <li><a href="<?php echo APP; ?>/login/" class="pink-text">
     <i class="material-icons">flight_takeoff</i>
     Salir</a></li>
 </ul>
