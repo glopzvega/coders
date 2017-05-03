@@ -1,7 +1,7 @@
 <?php 
     require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
 
-    $module = "registro";
+    $module = "home";
     if(isset($_GET["module"]) && $_GET["module"] != "")
     {
       $module = $_GET["module"];
@@ -15,11 +15,11 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Coders! Web Developers Love.!</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
         <link rel="apple-touch-icon" href="<?php echo APPNAME; ?>/apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/normalize.css">
         <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/materialize.min.css">
         <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/font-awesome.min.css">
@@ -49,6 +49,22 @@
             e.src='https://www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+
+        <script>
+          $(".button-collapse").sideNav();
+
+          $(".mostrar").on("click", function(){
+            // alert("LOL")
+            $('.button-collapse').sideNav('show');
+          })
+
+          $(".ocultar").on("click", function(){
+            $('.tap-target').tapTarget('open');            
+          })
+
+          $('.tap-target').tapTarget('open');            
+
         </script>
     </body>
 </html>

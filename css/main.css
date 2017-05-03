@@ -27,11 +27,26 @@ img
     width: 100%;
 }
 
+.brand-logo
+{
+    margin-left: 2em;
+}
+
+.avatar
+{
+    margin-top: 1em;
+}
+
 .appname
 {
     font-family: 'Gloria Hallelujah', cursive;
     /*margin-left: 0.2em;*/
     color: #E91E63;
+}
+
+.username, .email
+{
+    color: #757575;
 }
 
 .subtitle
@@ -48,6 +63,11 @@ img
 .btn
 {
     background-color: #E91E63;
+}
+
+.button-collapse
+{
+    display: block !important;
 }
 
 /*
