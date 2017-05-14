@@ -44,26 +44,21 @@
     </ul>
   </div>
 </nav>
-<!-- 
-<ul id="slide-out" class="side-nav">
-    <li><div class="userView">
-      <div class="background">
-        <img src="images/office.jpg">
-      </div>
-      <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-      <a href="#!name"><span class="white-text name">John Doe</span></a>
-      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul> -->
+<div class="row">
+  <div class="col s4 offset-s4">
+    
+<div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="" src="img/office.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Card Title</span>
+      <p><a href="#">This is a link</a></p>
+    </div>    
+  </div>
 
-  <!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> -->
-
-
+  </div>
+</div>
 
 <div class="fixed-action-btn click-to-toggle">
     <a id="btn-floating" class="btn-floating btn-large red">

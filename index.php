@@ -65,7 +65,7 @@
             $('.tap-target').tapTarget('open');            
           })
 
-          $('.tap-target').tapTarget('open');            
+          // $('.tap-target').tapTarget('open');            
 
         </script>
     </body>
