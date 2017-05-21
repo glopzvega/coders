@@ -9,7 +9,7 @@
 </ul>
 <nav>
   <div class="nav-wrapper">
-    <a href="#!" class="brand-logo appname">Coders!</a>
+    <a href="#!" class="brand-logo appname" id="nombreapp">Coders!</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">      
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Gerardo Lopez<i class="material-icons right">arrow_drop_down</i></a></li>    
@@ -45,7 +45,7 @@
   </div>
 </nav>
 <div class="row">
-  <div class="col s4 offset-s4">
+  <div class="col s4 offset-s4" id="contenedorPublicaciones">
     
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">

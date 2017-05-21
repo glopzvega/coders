@@ -38,10 +38,10 @@
         ?>
         
         <!-- EJEMPLO DESCARDO LIBRERIA -->
-        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- <script src="js/jquery-3.2.1.min.js"></script> -->
 
         <!-- EJEMPLO INCLUYENDOLA DE INTERNET -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -74,7 +74,14 @@
             $('.tap-target').tapTarget('open');            
           })
 
-          // $('.tap-target').tapTarget('open');            
+          // $('.tap-target').tapTarget('open');   
+
+
+          $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
+
+
+          $("#contenedorPublicaciones").html("");
+
 
         </script>
     </body>
