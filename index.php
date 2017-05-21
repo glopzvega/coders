@@ -305,8 +305,18 @@
           $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
 
 
-          $("#contenedorPublicaciones").html("");
+          // $("#contenedorPublicaciones").html("");
 
+          // $("#contenedorPublicaciones").html("<a class='btn' href=''>CLICK</a>");
+
+          $("#contenedorPublicaciones")
+            .html("")
+            .append("<a id='Agregar' class='btn' href=''>CLICK</a>");
+
+
+          $("#Agregar").on("click", function(){
+            alert("HOLA");
+          });
 
         </script>
     </body>
