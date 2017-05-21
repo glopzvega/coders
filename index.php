@@ -36,8 +36,17 @@
         require_once "views/" . $module . "/index.php";
 
         ?>
+        
+        <!-- EJEMPLO DESCARDO LIBRERIA -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+
+        <!-- EJEMPLO INCLUYENDOLA DE INTERNET -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+
         <script>window.jQuery || document.write('<script src="<?php echo APPNAME; ?>/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="<?php echo APPNAME; ?>/js/plugins.js"></script>
         <script src="<?php echo APPNAME; ?>/js/materialize.min.js"></script>
