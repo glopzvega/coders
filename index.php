@@ -144,23 +144,22 @@
 
           // $("#contenedorPublicaciones").html("");
 
-          // $("#contenedorPublicaciones").html("<a class='btn' href=''>CLICK</a>");
+          // $("#contenedorPublicaciones").html("<a class='btn' href=''>CLICK</a>");          
 
           $("#contenedorPublicaciones")
             .html("")
             .append("<a id='Agregar' class='btn' href='javascript:;'>CLICK</a>");
 
-
-          $("#Agregar").on("click", function(e){
-            alert("HOLA");
-            e.preventDefault();
-            // console.log(data)
-          });
+            $("#Agregar").on("click", function(e){
+                alert("HOLA");
+                e.preventDefault();
+                // console.log(data)
+              });
 
           $.each(data, function(index, publicacion){
                 console.log(publicacion);
 
-                $("#contenedorPublicaciones").prepend('<div class="card"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <i class="material-icons blue-text">thumb_up</i> '+publicacion.likes+' Me gusta </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
+                $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <i class="material-icons blue-text">thumb_up</i> '+publicacion.likes+' Me gusta </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
 
             });
 
