@@ -162,12 +162,21 @@
                 $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <a href="javascript:;" class="like"><i class="material-icons blue-text">thumb_up</i><span class="likes">' + publicacion.likes +'</span> Me gusta</a> </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
 
             });
+          
+
 
           $(".like").on("click", function(e){
             e.preventDefault();
-            alert("Le diste Me gusta");
+            // alert("Le diste Me gusta");
+            //$(this) hace referencia al elemento sobre el cual estoy trabajando actualmente (sobre el que le di click)
             var numero_likes = $(this).find(".likes").text();
-            alert(numero_likes + " Likes");
+            // alert(numero_likes + " Likes");
+
+            numero_likes = parseInt(numero_likes);
+            numero_likes = numero_likes + 1;
+
+            $(this).find(".likes").text(numero_likes);
+
           });
 
         </script>
