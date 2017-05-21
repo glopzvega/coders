@@ -314,9 +314,10 @@
             .append("<a id='Agregar' class='btn' href='javascript:;'>CLICK</a>");
 
 
-          $("#Agregar").on("click", function(){
+          $("#Agregar").on("click", function(e){
             alert("HOLA");
 
+            e.preventDefault();
 
             $("#contenedorPublicaciones").prepend('<div class="card"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="img/publicacion.jpg"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="img/avatar2.jpg" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b>Nombre de usuario </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> Contenido de la publicación. </div> </div> <div class="row"> <div class="col s6"> <i class="material-icons blue-text">thumb_up</i> 10 Me gusta </div> <div class="col s6 right-align"> hace 1 hora </div> </div> </div> </div>');
 
