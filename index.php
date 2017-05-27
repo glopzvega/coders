@@ -125,6 +125,7 @@
         </script>
 
         <script>
+
           $(".button-collapse").sideNav();
 
           $(".mostrar").on("click", function(){
@@ -159,13 +160,13 @@
           $.each(data, function(index, publicacion){
                 console.log(publicacion);
 
-                $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <a href="javascript:;" class="like"><i class="material-icons blue-text">thumb_up</i><span class="likes">' + publicacion.likes +'</span> Me gusta</a> </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
+                $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <a href="javascript:;" class="action like blue-text"><i class="material-icons">thumb_up</i><span class="likes">' + publicacion.likes +'</span><span class="texto">Me gusta</span></a> </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
 
             });
           
 
 
-          $(".like").on("click", function(e){
+          $(".action").on("click", function(e){
             e.preventDefault();
             // alert("Le diste Me gusta");
             //$(this) hace referencia al elemento sobre el cual estoy trabajando actualmente (sobre el que le di click)
@@ -173,9 +174,26 @@
             // alert(numero_likes + " Likes");
 
             numero_likes = parseInt(numero_likes);
-            numero_likes = numero_likes + 1;
 
-            $(this).find(".likes").text(numero_likes);
+            if($(this).hasClass("like"))
+            {
+              $(this).removeClass("like").addClass("dislike");
+              $(this).removeClass("blue-text").addClass("red-text");
+              $(this).find("i").text("thumb_down");
+              $(this).find(".texto").text("Ya no me gusta");              
+              numero_likes = numero_likes + 1;
+
+            }
+            else
+            {
+              $(this).removeClass("dislike").addClass("like"); 
+              $(this).removeClass("red-text").addClass("blue-text");
+              $(this).find("i").text("thumb_up");
+              $(this).find(".texto").text("Me gusta");     
+              numero_likes = numero_likes - 1;              
+            }
+
+            $(this).find(".likes").text(numero_likes);           
 
           });
 
