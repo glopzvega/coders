@@ -110,8 +110,22 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
 
       $.post("server.php", data, function(res){
         // console.log(res);
-        alert(res);
-      });
+        // alert(res);
+
+        if(res.correcta == true)
+        {
+          alert(res.mensaje);
+          location.href = "index.php";
+        }
+        else
+        {
+          alert(res.mensaje);
+          $("#email").val("");
+          $("#password").val("")
+        }
+
+
+      }, "json");
 
     });
 
