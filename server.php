@@ -1,25 +1,22 @@
 <?php 
 
+$password_correcta = "012345";
+
 if(isset($_POST["email"]) && isset($_POST["password"]))
 {
-	$res = array(
-		"success" => true		
-	);
+	if($_POST["password"] == $password_correcta)
+	{
+		echo "PASS CORRECTA";
+	}
+	else
+	{
+		echo "EL PASS NO COINCIDE";
+	}
+
 }
 else
-{
-	// $array1 = array(1, 2, 3, "Hola", "manzana", array());
-	// echo $array(4); // manzana
-
-	$res = array(
-		"success" => false, 
-		"error" => "Faltan datos"
-	);
-
-	// echo $res["error"];
-
+{	
+	echo "Faltan datos";
 }
-
-print_r($res);
 
 ?>

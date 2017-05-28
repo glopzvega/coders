@@ -56,7 +56,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
                     </div>                          
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
+                        <input id="password" name="password" type="password" class="validate">
                         <label for="password">Password</label>
                       </div>
                     </div>
