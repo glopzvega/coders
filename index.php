@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if(!isset($_SESSION["login"]))
+{
+  echo "<script>location.href='login.php';</script>;";
+}
     require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
 
     $module = "home";
@@ -36,7 +41,7 @@
     <i class="material-icons">face</i>
     Mi Perfil</a></li>  
   <li class="divider"></li>
-  <li><a href="<?php echo APP; ?>/login/" class="pink-text">
+  <li><a href="<?php echo APP; ?>/login.php" class="pink-text">
     <i class="material-icons">flight_takeoff</i>
     Salir</a></li>
 </ul>

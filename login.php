@@ -1,4 +1,9 @@
 <?php 
+session_start();
+
+unset($_SESSION["login"]);
+session_destroy();
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
 ?>
 <!doctype html>
