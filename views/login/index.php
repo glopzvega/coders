@@ -7,7 +7,7 @@
         </div>
         <div class="col m5 s12">
             <div class="row">
-                <form class="col s12">
+                <form id="FormLogin" action="server.php" method="GET" class="col s12">
                   <div class="row">                            
                     <div class="col s2">
                         <h1 class="logo">
@@ -22,13 +22,13 @@
                   <br>                                               
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="email" type="email" class="validate">
+                      <input id="email" name="email" type="email" class="validate">
                       <label for="email">Email</label>
                     </div>
                   </div>                          
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="password" type="password" class="validate">
+                      <input id="password" name="password" type="password" class="validate">
                       <label for="password">Password</label>
                     </div>
                   </div>

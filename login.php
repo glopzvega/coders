@@ -22,25 +22,27 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
     </head>
     <body>        
 
-      
+    <?php
+      include "views/login/index.php";
+    ?>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
 
-        <script>window.jQuery || document.write('<script src="<?php echo APPNAME; ?>/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="<?php echo APPNAME; ?>/js/plugins.js"></script>
-        <script src="<?php echo APPNAME; ?>/js/materialize.min.js"></script>
-        <script src="<?php echo APPNAME; ?>/js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="<?php echo APPNAME; ?>/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script src="<?php echo APPNAME; ?>/js/plugins.js"></script>
+    <script src="<?php echo APPNAME; ?>/js/materialize.min.js"></script>
+    <script src="<?php echo APPNAME; ?>/js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>
         
     </body>
 </html>
