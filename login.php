@@ -100,6 +100,23 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
     </script>
 
     <script>
+
+    procesar_respuesta = function(res){
+      // console.log(res);
+      // alert(res);
+
+      if(res.correcta == true)
+      {
+        alert(res.mensaje);
+        location.href = "index.php";
+      }
+      else
+      {
+        alert(res.mensaje);
+        $("#email").val("");
+        $("#password").val("")
+      }
+    }
       
     $("#FormLogin").on("submit", function(e){
       e.preventDefault();
@@ -108,24 +125,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
       var data = $(this).serialize();
       // alert(data)
 
-      $.post("server.php", data, function(res){
-        // console.log(res);
-        // alert(res);
-
-        if(res.correcta == true)
-        {
-          alert(res.mensaje);
-          location.href = "index.php";
-        }
-        else
-        {
-          alert(res.mensaje);
-          $("#email").val("");
-          $("#password").val("")
-        }
-
-
-      }, "json");
+      $.post("server.php", data, procesar_respuesta , "json");
 
     });
 
