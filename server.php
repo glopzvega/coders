@@ -12,7 +12,6 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
 	{
 		echo "EL PASS NO COINCIDE";
 	}
-
 }
 else
 {	

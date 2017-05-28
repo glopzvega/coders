@@ -98,6 +98,24 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-XXXXX-X','auto');ga('send','pageview');
     </script>
+
+    <script>
+      
+    $("#FormLogin").on("submit", function(e){
+      e.preventDefault();
+      // alert("SUBMIT");
+
+      var data = $(this).serialize();
+      // alert(data)
+
+      $.post("server.php", data, function(res){
+        // console.log(res);
+        alert(res);
+      });
+
+    });
+
+    </script>
         
     </body>
 </html>
