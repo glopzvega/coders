@@ -35,7 +35,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
           </div>
           <div class="col m5 s12">
               <div class="row">
-                  <form id="FormLogin" action="server.php" method="GET" class="col s12">
+                  <form id="FormLogin" action="server.php" method="POST" class="col s12">
                     <div class="row">                            
                       <div class="col s2">
                           <h1 class="logo">
@@ -56,7 +56,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
                     </div>                          
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="password" name="password" type="password" class="validate">
+                        <input id="password" type="password" class="validate">
                         <label for="password">Password</label>
                       </div>
                     </div>
