@@ -12,14 +12,14 @@ if (!$conn) {
 } 
 echo "Connected successfully";
 
-$sql = "INSERT INTO usuarios (username, password, fecha) VALUES ('mcgalv@gmail.com', '123456', '". date('Y-m-d')."')";
+// $sql = "INSERT INTO usuarios (username, password, fecha) VALUES ('mcgalv@gmail.com', '123456', '". date('Y-m-d')."')";
 
-$res = mysqli_query($conn, $sql);
-if ($res) {
-    echo "New record created successfully" . $res;
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+// $res = mysqli_query($conn, $sql);
+// if ($res) {
+//     echo "New record created successfully" . $res;
+// } else {
+//     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+// }
 
 mysqli_close($conn);
 ?>
