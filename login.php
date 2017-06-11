@@ -4,7 +4,7 @@ session_start();
 unset($_SESSION["login"]);
 session_destroy();
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/server/config.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
 ?>
 <!doctype html>
 <html class="no-js" lang="">
