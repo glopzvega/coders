@@ -2,17 +2,9 @@
 
 if(isset($_POST["email"]) && isset($_POST["password"]))
 {
-	$servername = "localhost";
-	$username = "root";
-	$password = "root";
-	$dbname = "coders";
-	$puerto = "3636";
-	// Create connection
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	
+	require_once "conexion.php";
 
-	if (!$conn) {
-	    die("No se pudo conectar: ".mysqli_connect_error());
-	}
 	$email = $_POST["email"];
 	$pass = $_POST["password"];
 	$sql = "SELECT * FROM usuarios WHERE username = '$email'";
