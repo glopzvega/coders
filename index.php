@@ -86,11 +86,22 @@ if(!isset($_SESSION["login"]))
 <!-- Modal Structure -->
 <div id="modalPublicacion" class="modal">
   <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
+    <h4>Nueva Publicación</h4>
+    
+    <div class="row">
+      <form class="">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="contenido" class="materialize-textarea"></textarea>
+            <label for="contenido">Contenido:</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Guardar</a>
   </div>
 </div>
 
@@ -156,7 +167,7 @@ if(!isset($_SESSION["login"]))
 
 
 
-          
+
 
           // $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
 
