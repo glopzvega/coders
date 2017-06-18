@@ -111,6 +111,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
         if(res.success)
         {
           alert(res.mensaje);
+          location.href = "index.php";
         }
         else
         {

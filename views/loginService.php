@@ -1,8 +1,7 @@
 <?php 
-
+session_start();
 if(isset($_POST["email"]) && isset($_POST["password"]))
-{
-	
+{	
 	require_once "conexion.php";
 
 	$email = $_POST["email"];
@@ -16,6 +15,7 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
 			if($row["password"] == $pass)
 			{				
 				$res = array("success" => true, "mensaje" => "LOGIN EXITOSO");
+				$_SESSION["login"] = true;
 				echo json_encode($res);
 			}
 			else
