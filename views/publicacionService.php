@@ -6,10 +6,10 @@ if(isset($_POST["contenido"]))
 
 	$contenido = $_POST["contenido"];
 	$fecha = date("Y-m-d");
-	$usario = $_SESSION["usuario"];
-
+	$usuario = $_SESSION["usuario"];
+	// var_dump($_SESSION);
 	$sql = "INSERT INTO publicacion(usuario, fecha, contenido) VALUES ('$usuario', '$fecha', '$contenido')";
-
+	// echo $sql;
 	$result = mysqli_query($conn, $sql);
 
 	if($result)

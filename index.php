@@ -96,10 +96,10 @@ if(!isset($_SESSION["login"]))
     <h4>Nueva Publicación</h4>
     
     <div class="row">
-      <form class="">
+      <form id="formPublicacion" class="">
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="contenido" class="materialize-textarea"></textarea>
+            <textarea id="contenido" name="contenido" class="materialize-textarea"></textarea>
             <label for="contenido">Contenido:</label>
           </div>
         </div>
@@ -108,7 +108,7 @@ if(!isset($_SESSION["login"]))
 
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Guardar</a>
+    <a href="#!" id="guardarPublicacion" class="modal-action waves-effect waves-green btn-flat">Guardar</a>
   </div>
 </div>
 
@@ -167,6 +167,26 @@ if(!isset($_SESSION["login"]))
 
           $(".mostrar").on("click", function(){
            $('#modalPublicacion').modal('open');
+          });
+
+          $("#guardarPublicacion").on("click", function(e){
+            e.preventDefault();
+
+            var form_data = $("#formPublicacion").serialize();
+            console.log(form_data);
+
+            $.post("views/publicacionService.php", form_data, function(res){
+                console.log(res);
+                if(res.success)
+                {
+                  alert(res.mensaje);
+                  $("#modalPublicacion").modal("close");
+                }
+                else
+                {
+                  alert(res.mensaje);
+                }
+            }, "json");
           });
 
 
