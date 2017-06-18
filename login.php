@@ -130,7 +130,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
       var data = $(this).serialize();
       // alert(data)
 
-      $.post("server.php", data, procesar_respuesta , "json");
+      $.post("views/loginService.php", data, procesar_respuesta , "json");
 
     });
 
