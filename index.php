@@ -190,7 +190,7 @@ if(!isset($_SESSION["login"]))
           });
 
 
-
+          
 
 
 
@@ -203,22 +203,15 @@ if(!isset($_SESSION["login"]))
 
           // $("#contenedorPublicaciones").html("<a class='btn' href=''>CLICK</a>");          
 
-          // $("#contenedorPublicaciones")
-          //   .html("")
-          //   .append("<a id='Agregar' class='btn' href='javascript:;'>CLICK</a>");
+          $("#contenedorPublicaciones")
+            .html("")
+            .append("<a id='Agregar' class='btn' href='javascript:;'>CLICK</a>");
 
-          //   $("#Agregar").on("click", function(e){
-          //       alert("HOLA");
-          //       e.preventDefault();
-          //       // console.log(data)
-          //     });
-
-          $.getJSON("view/publicacionService.php?obtener=", function(res){
-            if(res.success)
-            {
-              var data = res.data;
-            }
-          });
+            $("#Agregar").on("click", function(e){
+                alert("HOLA");
+                e.preventDefault();
+                // console.log(data)
+              });
 
           $.each(data, function(index, publicacion){
                 console.log(publicacion);
