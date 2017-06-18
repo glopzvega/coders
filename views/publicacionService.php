@@ -19,7 +19,7 @@ if(isset($_POST["contenido"]))
 	}
 	else
 	{
-		$res = array("success" => true, "mensaje" => "Ocurrio un error al registrar la publicacion");
+		$res = array("success" => false, "mensaje" => "Ocurrio un error al registrar la publicacion");
 		echo json_encode($res);			
 	}
 }
