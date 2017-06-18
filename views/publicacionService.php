@@ -23,6 +23,23 @@ if(isset($_POST["contenido"]))
 		echo json_encode($res);			
 	}
 }
+else if(isset($_GET["obtener"]))
+{
+	require_once "conexion.php";
+	
+	$sql = "SELECT p.id, u.nombre, u.apellido, p.fecha, p.contenido, p.usuario FROM publicacion as p, usuarios as u WHERE p.usuario = u.id";
+
+	$result = mysqli_query($conn, $sql);
+	$data = array();
+	if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+	    while($row = mysqli_fetch_assoc($result)) {			
+			$data[] = $row;
+	    }
+	}
+	$res = array("success" => true, "data" => $data);
+	echo json_encode($res);
+}
 else
 {
 	$res = array("success" => false, "mensaje" => "Todos los datos son necesarios");
