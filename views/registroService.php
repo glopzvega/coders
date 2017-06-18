@@ -28,19 +28,25 @@ if(isset($_GET["first_name"]) && isset($_GET["last_name"]) && isset($_GET["email
 			// var_dump($row);
 			// echo "</pre>";
 	  //   }
-		echo "Ese email $email ya está registrado";
+		
+		$res = array("success" => false, "mensaje" => "Ese email $email ya está registrado");
+		echo json_encode($res);
 	}
 	else
 	{		
 		$sql = "INSERT INTO usuarios(nombre, apellido, username, password, fecha) VALUES ('$nombre', '$apellido', '$email', '$pass', '$fecha')";
 
 		$res = mysqli_query($conn, $sql);
-		var_dump($res);
+		
+		$res = array("success" => false, "mensaje" => "Se ha registrado correctamente");
+		echo json_encode($res);
+
 	}
 }
 else
 {
-	echo "Todos los datos son necesarios";
+	$res = array("success" => false, "mensaje" => "Todos los datos son necesarios");
+	echo json_encode($res);
 }
 
 

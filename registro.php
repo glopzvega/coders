@@ -118,6 +118,14 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
 
         $.getJSON("views/registroService.php", datos, function(res){
           console.log(res);
+          if(res.success)
+          {
+            alert(res.mensaje);
+          }
+          else
+          {
+            alert(res.mensaje);
+          }
         });
 
       });
