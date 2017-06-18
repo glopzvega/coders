@@ -106,21 +106,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
 
     <script>
 
-    procesar_respuesta = function(res){
-      // console.log(res);
-      // alert(res);
-
-      if(res.correcta == true)
-      {
-        alert(res.mensaje);
-        location.href = "index.php";
-      }
-      else
-      {
-        alert(res.mensaje);
-        $("#email").val("");
-        $("#password").val("")
-      }
+    procesar_respuesta = function(res)
+    {
+        if(res.success)
+        {
+          alert(res.mensaje);
+        }
+        else
+        {
+          alert(res.mensaje);
+        }
     }
       
     $("#FormLogin").on("submit", function(e){

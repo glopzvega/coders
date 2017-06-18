@@ -14,23 +14,27 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
     // output data of each row
 	    while($row = mysqli_fetch_assoc($result)) {
 			if($row["password"] == $pass)
-			{
-				echo "LOGIN EXITOSO";
+			{				
+				$res = array("success" => true, "mensaje" => "LOGIN EXITOSO");
+				echo json_encode($res);
 			}
 			else
 			{
-				echo "LOS DATOS DE ACCESO SON INCORRECTOS";
+				$res = array("success" => false, "mensaje" => "LOS DATOS DE ACCESO SON INCORRECTOS");
+				echo json_encode($res);	
 			}
 	    }
 	}
 	else
 	{
-		echo "El usuario no existe";
+		$res = array("success" => false, "mensaje" => "El usuario no existe");
+		echo json_encode($res);			
 	}
 }
 else
 {
-	echo "Todos los datos son necesarios";
+	$res = array("success" => false, "mensaje" => "Todos los datos son necesarios");
+	echo json_encode($res);
 }
 
 
