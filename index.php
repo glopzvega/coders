@@ -82,6 +82,18 @@ if(!isset($_SESSION["login"]))
     </ul>
   </div>
 </nav>
+
+<!-- Modal Structure -->
+<div id="modalPublicacion" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+
 <div class="row">
     <div class="col s4 offset-s4" id="contenedorPublicaciones">
     
@@ -133,19 +145,20 @@ if(!isset($_SESSION["login"]))
 
           $(".button-collapse").sideNav();
 
+          $('#modalPublicacion').modal();
+
           $(".mostrar").on("click", function(){
-            // alert("LOL")
-            $('.button-collapse').sideNav('show');
-          })
-
-          $(".ocultar").on("click", function(){
-            $('.tap-target').tapTarget('open');            
-          })
-
-          // $('.tap-target').tapTarget('open');   
+           $('#modalPublicacion').modal('open');
+          });
 
 
-          $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
+
+
+
+
+          
+
+          // $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
 
 
           // $("#contenedorPublicaciones").html("");
