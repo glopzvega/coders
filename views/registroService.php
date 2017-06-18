@@ -28,25 +28,25 @@ if(isset($_GET["first_name"]) && isset($_GET["last_name"]) && isset($_GET["email
 	$result = mysqli_query($conn, $sql);
 	
 	// echo "<pre>";
-	var_dump($result);
+	// var_dump($result);
 	// echo "</pre>";
 
 	if (mysqli_num_rows($result) > 0) {
     // output data of each row
-	    while($row = mysqli_fetch_assoc($result)) {
-			echo "<pre>";
-			var_dump($row);
-			echo "</pre>";
-	    }
+	  //   while($row = mysqli_fetch_assoc($result)) {
+			// echo "<pre>";
+			// var_dump($row);
+			// echo "</pre>";
+	  //   }
+		echo "Ese email $email ya está registrado";
 	}
+	else
+	{		
+		$sql = "INSERT INTO usuarios(nombre, apellido, username, password, fecha) VALUES ('$nombre', '$apellido', '$email', '$pass', '$fecha')";
 
-	// $sql = "INSERT INTO usuarios(nombre, apellido, username, password, fecha) VALUES ('$nombre', '$apellido', '$email', '$pass', '$fecha')";
-
-	// $res = mysqli_query($conn, $sql);
-
-	// var_dump($res);
-
-
+		$res = mysqli_query($conn, $sql);
+		var_dump($res);
+	}
 }
 else
 {
