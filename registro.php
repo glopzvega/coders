@@ -36,7 +36,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
         </div>
         <div class="col m5 s12">
             <div class="row">
-                <form class="col s12">
+                <form id="formRegistro" class="col s12">
                   <div class="row">                            
                     <div class="col s2">
                         <h1 class="logo">
@@ -51,23 +51,23 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
                   <br>
                   <div class="row">
                     <div class="input-field col s6">
-                      <input id="first_name" type="text" class="validate">
+                      <input id="first_name" type="text" class="validate" name="first_name">
                       <label for="first_name">Nombre</label>
                     </div>
                     <div class="input-field col s6">
-                      <input id="last_name" type="text" class="validate">
+                      <input id="last_name" type="text" class="validate" name="last_name">
                       <label for="last_name">Apellido</label>
                     </div>
                   </div>                          
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="email" type="email" class="validate">
+                      <input id="email" type="email" class="validate" name="email">
                       <label for="email">Email</label>
                     </div>
                   </div>                          
                   <div class="row">
                     <div class="input-field col s12">
-                      <input id="password" type="password" class="validate">
+                      <input id="password" type="password" class="validate" name="password">
                       <label for="password">Password</label>
                     </div>
                   </div>
@@ -81,7 +81,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
                   </div>
                   <div class="row">
                       <div class="col s12 center-align">
-                          o <a href="<?php echo APPNAME; ?>/login/">Entra con tu cuenta</a>
+                          o <a href="<?php echo APPNAME; ?>/login.php">Entra con tu cuenta</a>
                       </div>
                   </div>
                 </form>
@@ -89,10 +89,6 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
         </div>
     </div>
 </div>
-
-
-
-
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
@@ -114,33 +110,17 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
 
     <script>
 
-    procesar_respuesta = function(res){
-      // console.log(res);
-      // alert(res);
+      $("#formRegistro").on("submit", function(e){
+        e.preventDefault();
 
-      if(res.correcta == true)
-      {
-        alert(res.mensaje);
-        location.href = "index.php";
-      }
-      else
-      {
-        alert(res.mensaje);
-        $("#email").val("");
-        $("#password").val("")
-      }
-    }
-      
-    $("#FormLogin").on("submit", function(e){
-      e.preventDefault();
-      // alert("SUBMIT");
+        var datos = $(this).serialize();
+        console.log(datos);
 
-      var data = $(this).serialize();
-      // alert(data)
+        $.getJSON("views/registroService.php", datos, function(res){
+          console.log(res);
+        });
 
-      $.post("server.php", data, procesar_respuesta , "json");
-
-    });
+      });
 
     </script>
         

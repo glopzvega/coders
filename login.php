@@ -75,7 +75,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
                     </div>
                     <div class="row">
                         <div class="col s12 center-align">
-                            o <a href="<?php echo APPNAME; ?>/registro/">Crea una cuenta</a>
+                            o <a href="<?php echo APPNAME; ?>/registro.php">Crea una cuenta</a>
                         </div>
                     </div>
                   </form>
