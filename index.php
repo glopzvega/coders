@@ -103,6 +103,11 @@ if(!isset($_SESSION["login"]))
             <label for="contenido">Contenido:</label>
           </div>
         </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input name="foto_publicacion" id="foto_publicacion" type="file" accept="image/*">            
+          </div>
+        </div>
       </form>
     </div>
 
@@ -197,7 +202,7 @@ if(!isset($_SESSION["login"]))
               $.each(registros, function(index, publicacion){
                 console.log(publicacion);
 
-                $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.usuario + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <a href="javascript:;" class="action like blue-text"><i class="material-icons">thumb_up</i><span class="likes">' + publicacion.likes +'</span><span class="texto">Me gusta</span></a> </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
+                $("#contenedorPublicaciones").prepend('<div class="card" id="publicacion_'+publicacion.id+'"> <div class="card-image waves-effect waves-block waves-light"> <img class="" src="' + publicacion.foto + '"> </div> <div class="card-content"> <div class="row"> <div class="col s3 valign-wrapper"> <!-- <span class="card-title activator grey-text text-darken-4">Card Title</span> --> <img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;"> </div> <div class="col s9"> <div class=""> <br> <b> ' + publicacion.nombre + " " + publicacion.apellido + ' </b>publicó. </div> </div> </div> <div class="row"> <div class="col s12"> '+publicacion.contenido+' </div> </div> <div class="row"> <div class="col s6"> <a href="javascript:;" class="action like blue-text"><i class="material-icons">thumb_up</i><span class="likes">' + publicacion.likes +'</span><span class="texto">Me gusta</span></a> </div> <div class="col s6 right-align"> '+publicacion.fecha+' </div> </div> </div> </div>');
             });
 
           }
