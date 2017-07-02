@@ -2,22 +2,12 @@
 session_start();
 if(isset($_POST["contenido"]))
 {
-
 	// echo "<pre>";
 	// var_dump($_FILES);
 	// echo "</pre>";
 	// exit();	
 
-	if(count($_FILES) > 0 && isset($_FILES["foto_publicacion"]))
-	{
-		$uploadfile = "../publicaciones/" . basename($_FILES['foto_publicacion']['name']); 
-
-		if(move_uploaded_file($_FILES['foto_publicacion']['tmp_name'], $uploadfile))
-			{
-				echo $uploadfile;
-			}
-	}
-
+	
 
 	require_once "conexion.php";
 
@@ -30,7 +20,38 @@ if(isset($_POST["contenido"]))
 	$result = mysqli_query($conn, $sql);
 
 	if($result)
-	{
+	{		
+		$last_id = mysqli_insert_id($conn);
+
+		if(count($_FILES) > 0 && isset($_FILES["foto_publicacion"]))
+		{
+			$tipo_archivo = $_FILES["foto_publicacion"]["type"];
+
+			if($tipo_archivo == "image/jpeg")
+			{
+				$nombre_archivo = $last_id . ".jpg";			
+			}
+			else if($tipo_archivo == "image/png")
+			{
+				$nombre_archivo = $last_id . ".png";			
+			}
+			else if($tipo_archivo == "image/gif")
+			{
+				$nombre_archivo = $last_id . ".gif";			
+			}
+			else
+			{
+				echo json_encode(array("success" => false, "error" => "Formato de imagen no aceptado"));
+			}
+
+			$uploadfile = "../publicaciones/" . $nombre_archivo; 
+
+			if(move_uploaded_file($_FILES['foto_publicacion']['tmp_name'], $uploadfile))
+				{
+					echo $uploadfile;
+				}
+		}
+
 		$res = array("success" => true, "mensaje" => "Se ha registrado correctamente");
 		echo json_encode($res);		
 	}
