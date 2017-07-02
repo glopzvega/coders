@@ -2,6 +2,12 @@
 session_start();
 if(isset($_POST["contenido"]))
 {
+
+	echo "<pre>";
+	var_dump($_FILES);
+	echo "</pre>";
+	exit();
+
 	require_once "conexion.php";
 
 	$contenido = $_POST["contenido"];

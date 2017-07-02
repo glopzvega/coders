@@ -96,7 +96,7 @@ if(!isset($_SESSION["login"]))
     <h4>Nueva Publicación</h4>
     
     <div class="row">
-      <form id="formPublicacion" class="">
+      <form id="formPublicacion" class="" enctype="multipart/form-data">
         <div class="row">
           <div class="input-field col s12">
             <textarea id="contenido" name="contenido" class="materialize-textarea"></textarea>
@@ -174,24 +174,50 @@ if(!isset($_SESSION["login"]))
            $('#modalPublicacion').modal('open');
           });
 
+          var guardar = function()
+          {
+            // Esto se utiliza en lugar del serialize() cuando se usen imagene o archivos
+            var formData = new FormData($("#formPublicacion")[0]);
+
+              $.ajax({
+                url : "views/publicacionService.php",
+                message : "",
+                data : formData,       
+                processData: false,
+                contentType: false,
+                cache : false,
+                method : "POST",
+                dataType : "json",
+                success: function(res){
+                  console.log(res);                  
+                },
+                error: function(res){                             
+                    console.log(res);
+                }
+            });  
+          }
+
+
           $("#guardarPublicacion").on("click", function(e){
             e.preventDefault();
 
-            var form_data = $("#formPublicacion").serialize();
-            console.log(form_data);
+            guardar();
 
-            $.post("views/publicacionService.php", form_data, function(res){
-                console.log(res);
-                if(res.success)
-                {
-                  alert(res.mensaje);
-                  $("#modalPublicacion").modal("close");
-                }
-                else
-                {
-                  alert(res.mensaje);
-                }
-            }, "json");
+            // var form_data = $("#formPublicacion").serialize();
+            // console.log(form_data);
+
+            // $.post("views/publicacionService.php", form_data, function(res){
+            //     console.log(res);
+            //     if(res.success)
+            //     {
+            //       alert(res.mensaje);
+            //       $("#modalPublicacion").modal("close");
+            //     }
+            //     else
+            //     {
+            //       alert(res.mensaje);
+            //     }
+            // }, "json");
           });
 
           mostrar_publicaciones = function(registros)
