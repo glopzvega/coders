@@ -139,7 +139,7 @@ if(!isset($_SESSION["login"]))
   </div>
 
 
-        <script src="ejemplo.js"></script>
+        <!-- <script src="ejemplo.js"></script> -->
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
@@ -189,12 +189,19 @@ if(!isset($_SESSION["login"]))
             }, "json");
           });
 
+          mostrar_publicaciones = function()
+          {
 
-          
+          }
 
+          obtener_publicaciones = function()
+          {
+            $.getJSON("views/publicacionService.php?obtener", function(res){
+              console.log(res);
+            });
+          }
 
-
-
+          obtener_publicaciones();
 
           // $("#nombreapp").html("<b>Curso de Desarrollo Web</b>");  
 
@@ -213,6 +220,7 @@ if(!isset($_SESSION["login"]))
                 // console.log(data)
               });
 
+          var data = [];
           $.each(data, function(index, publicacion){
                 console.log(publicacion);
 
