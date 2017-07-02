@@ -3,10 +3,21 @@ session_start();
 if(isset($_POST["contenido"]))
 {
 
-	echo "<pre>";
-	var_dump($_FILES);
-	echo "</pre>";
-	exit();
+	// echo "<pre>";
+	// var_dump($_FILES);
+	// echo "</pre>";
+	// exit();	
+
+	if(count($_FILES) > 0 && isset($_FILES["foto_publicacion"]))
+	{
+		$uploadfile = "../publicaciones/" . basename($_FILES['foto_publicacion']['name']); 
+
+		if(move_uploaded_file($_FILES['foto_publicacion']['tmp_name'], $uploadfile))
+			{
+				echo $uploadfile;
+			}
+	}
+
 
 	require_once "conexion.php";
 
