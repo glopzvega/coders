@@ -49,6 +49,9 @@ if(isset($_POST["contenido"]))
 			if(move_uploaded_file($_FILES['foto_publicacion']['tmp_name'], $uploadfile))
 				{
 					echo $uploadfile;
+
+					$sql = "UPDATE publicacion SET imagen='$nombre_archivo' WHERE id='$last_id'";
+					mysqli_query($conn, $sql);
 				}
 		}
 
