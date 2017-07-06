@@ -48,8 +48,6 @@ if(isset($_POST["contenido"]))
 
 			if(move_uploaded_file($_FILES['foto_publicacion']['tmp_name'], $uploadfile))
 				{
-					echo $uploadfile;
-
 					$sql = "UPDATE publicacion SET imagen='$nombre_archivo' WHERE id='$last_id'";
 					mysqli_query($conn, $sql);
 				}
@@ -69,7 +67,7 @@ else if(isset($_GET["obtener"]))
 	require_once "conexion.php";
 	
 	// Se le agrega el prefijo al inicio de cada campo para poder diferenciarlos unos de otros ya que puede suceder que tengan el mismo nombre y cause un error por ambiguedad.
-	$sql = "SELECT p.id, u.nombre, u.apellido, p.fecha, p.contenido, p.usuario, p.likes"; 
+	$sql = "SELECT p.id, u.nombre, u.apellido, p.fecha, p.contenido, p.usuario, p.likes, p.imagen"; 
 
 	// Se consulta de 2 tablas y se define una variable para hacer referencia a cada 1 de ellas p = publicacion y u = usuarios
 	$sql .= " FROM publicacion as p, usuarios as u";
