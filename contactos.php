@@ -92,6 +92,19 @@ if(!isset($_SESSION["login"]))
       </nav>
 
 
+      <form id="InvitarForm" action="">
+        <div class="row">
+          <div class="col s12">            
+            <div class="input-field inline">
+              <input name="email" id="email" type="email" class="validate">
+              <label for="email" data-error="El formato es incorrecto" data-success="right">Email</label>              
+              <button type="submit" class="btn waves-effect waves-light">Invitar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
       <!-- <script src="ejemplo.js"></script> -->
 
       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -114,6 +127,29 @@ if(!isset($_SESSION["login"]))
           });
         }();
 
+        enviar_solicitud = function(data)
+        {
+          $.getJSON("views/contactoService.php?invitar=", data, function(res){
+            console.log(res);
+            if(res.success)
+            {
+              alert("Se ha enviado la solicitud correctamente.")
+            }
+            else
+            {
+              alert(res.error);
+            }
+          });
+        }
+
+
+        $("#InvitarForm").on("submit", function(e){
+          e.preventDefault();
+
+          var data = $(this).serialize();
+          // console.log(data);
+          enviar_solicitud(data);
+        });
         // obtener_datos();
 
 
