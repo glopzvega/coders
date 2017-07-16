@@ -224,6 +224,21 @@ if(!isset($_SESSION["login"]))
 
           dar_like = function(boton){
 
+            var idpublicacion = boton.parents(".card").attr("id");
+            
+            console.log(idpublicacion)
+            console.log("===========")
+
+            idpublicacion = idpublicacion.split("_");
+            
+            console.log(idpublicacion)
+            console.log("===========")
+            
+            idpublicacion = idpublicacion[1];
+            
+            console.log(idpublicacion)
+            console.log("===========")
+
             var numero_likes = boton.find(".likes").text();
             // alert(numero_likes + " Likes");
 
@@ -231,20 +246,27 @@ if(!isset($_SESSION["login"]))
 
             if(boton.hasClass("like"))
             {
-              boton.removeClass("like").addClass("dislike");
-              boton.removeClass("blue-text").addClass("red-text");
-              boton.find("i").text("thumb_down");
-              boton.find(".texto").text("Ya no me gusta");              
-              numero_likes = numero_likes + 1;
+              $.getJSON("views/publicacionService.php?like=&id=" + idpublicacion, function(res)
+              {
+                boton.removeClass("like").addClass("dislike");
+                boton.removeClass("blue-text").addClass("red-text");
+                boton.find("i").text("thumb_down");
+                boton.find(".texto").text("Ya no me gusta");              
+                numero_likes = numero_likes + 1;
+              });
 
             }
             else
             {
-              boton.removeClass("dislike").addClass("like"); 
-              boton.removeClass("red-text").addClass("blue-text");
-              boton.find("i").text("thumb_up");
-              boton.find(".texto").text("Me gusta");     
-              numero_likes = numero_likes - 1;              
+              $.getJSON("views/publicacionService.php?dislike=&id=" + idpublicacion, function(res)
+              {
+                boton.removeClass("dislike").addClass("like"); 
+                boton.removeClass("red-text").addClass("blue-text");
+                boton.find("i").text("thumb_up");
+                boton.find(".texto").text("Me gusta");     
+                numero_likes = numero_likes - 1; 
+
+              });
             }
 
             boton.find(".likes").text(numero_likes);

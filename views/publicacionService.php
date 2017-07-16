@@ -65,7 +65,7 @@ if(isset($_POST["contenido"]))
 
 else if(isset($_GET["like"]))
 {
-	if(isset($_GET["id"]))
+	if(isset($_GET["id"]) && $_GET["id"] != "")
 	{
 		require_once "conexion.php";
 		$id = $_GET["id"];
@@ -87,12 +87,15 @@ else if(isset($_GET["like"]))
 		$sql = "UPDATE publicacion SET likes = '$numlikes' WHERE id = '$id'";
 
 		mysqli_query($conn, $sql);
+
+		$res = array("success" => true);
+		echo json_encode($res);
 	}
 }
 
 else if(isset($_GET["dislike"]))
 {
-	if(isset($_GET["id"]))
+	if(isset($_GET["id"]) && $_GET["id"] != "")
 	{
 		require_once "conexion.php";
 		$id = $_GET["id"];
@@ -114,6 +117,9 @@ else if(isset($_GET["dislike"]))
 		$sql = "UPDATE publicacion SET likes = '$numlikes' WHERE id = '$id'";
 
 		mysqli_query($conn, $sql);
+
+		$res = array("success" => true);
+		echo json_encode($res);
 	}
 }
 
