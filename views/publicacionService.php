@@ -150,6 +150,7 @@ else if(isset($_GET["dislike"]))
 else if(isset($_GET["obtener"]))
 {
 	require_once "conexion.php";
+	$usuario_id = $_SESSION["usuario"];
 	
 	// Se le agrega el prefijo al inicio de cada campo para poder diferenciarlos unos de otros ya que puede suceder que tengan el mismo nombre y cause un error por ambiguedad.
 	$sql = "SELECT p.id, u.nombre, u.apellido, p.fecha, p.contenido, p.usuario, p.likes, p.imagen"; 
@@ -158,7 +159,7 @@ else if(isset($_GET["obtener"]))
 	$sql .= " FROM publicacion as p, usuarios as u";
 
 	// Cuando se consultan 2 o más tablas es necesario agregar en el WHERE una condicion que indique la relacion de las columnas en este caso la tabla publicacion->usuario relaciona a la tabla usuario->id  
-	$sql .= " WHERE p.usuario = u.id";
+	$sql .= " WHERE p.usuario = u.id AND p.usuario = '$usuario_id'";
 
 	$result = mysqli_query($conn, $sql);
 	$data = array();
@@ -168,7 +169,43 @@ else if(isset($_GET["obtener"]))
 			$data[] = $row;
 	    }
 	}
-	$res = array("success" => true, "data" => $data);
+
+	$publicaciones = $data;
+
+	$sql = "SELECT idpublicacion FROM usuario_likes WHERE idusuario = '$usuario_id'";
+
+	$result = mysqli_query($conn, $sql);
+	$likes = array();
+	if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+	    while($row = mysqli_fetch_assoc($result)) {			
+			// $likes[] = array_values($row);
+			$likes[] = $row["idpublicacion"];
+	    }
+	}
+
+	// $likes = array_values($likes);
+	// echo "<pre>";
+	// var_dump($likes);
+	// print_r($likes);
+	// echo "</pre>";
+	// exit();
+
+	foreach ($publicaciones as $key => $publicacion) {
+		
+		// var_dump($publicacion["id"]);
+
+		if(in_array($publicacion["id"], $likes))
+		{
+			$publicaciones[$key]["conlike"] = 1;
+		}
+		else
+		{
+			$publicaciones[$key]["conlike"] = 0;			
+		}
+	}
+
+	$res = array("success" => true, "data" => $publicaciones);
 	echo json_encode($res);
 }
 else
