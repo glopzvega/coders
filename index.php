@@ -280,6 +280,20 @@ if(!isset($_SESSION["login"]))
               $.each(registros, function(index, publicacion){
                 console.log(publicacion);
 
+                var conlike = publicacion.conlike;
+                var icon = "thumb_up";
+                var clase = "like";
+                var color = "blue-text";
+                var texto = "Me gusta";
+
+                if (conlike == 1)                
+                {
+                  icon = "thumb_down";
+                  clase = "dislike";
+                  color = "red-text";
+                  texto = "Ya no me gusta";
+                }
+
                 publicacion.imagen = "publicaciones/" + publicacion.imagen;
 
                 var pub = [
@@ -302,10 +316,10 @@ if(!isset($_SESSION["login"]))
                     '</div>',
                     '<div class="row">',
                       '<div class="col s6">',
-                        '<a href="javascript:;" class="action like blue-text">',
-                          '<i class="material-icons">thumb_up</i>',
+                        '<a href="javascript:;" class="action ' + clase + ' ' + color + '">',
+                          '<i class="material-icons">' + icon + '</i>',
                           '<span class="likes">' + publicacion.likes +'</span>',
-                          '<span class="texto">Me gusta</span>',
+                          '<span class="texto">' + texto + '</span>',
                         '</a>',
                       '</div>',
                       '<div class="col s6 right-align"> '+publicacion.fecha+' </div>',
