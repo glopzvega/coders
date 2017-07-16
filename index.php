@@ -82,7 +82,7 @@ if(!isset($_SESSION["login"]))
         </a>
       </li>
       <li>
-        <a href="">
+        <a href="contactos.php">
           <i class="material-icons green-text darken-1">person</i> Contactos
         </a>
       </li>
