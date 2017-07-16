@@ -56,6 +56,7 @@ function crear_solicitud($conn, $res)
 	{
 		$sql = "INSERT INTO solicitudes(idusuario, idcontacto) VALUES ('$idusuario', '$idcontacto')";
 		$idsolicitud = call($conn, $sql, 1);
+		return $idsolicitud;
 	}
 
 	return $res[0]["idsolicitud"];
