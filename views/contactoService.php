@@ -2,7 +2,7 @@
 session_start();
 require_once "conexion.php";
 
-function call($conn, $sql, $insert)
+function call($conn, $sql, $insert="0")
 {
 	$result = mysqli_query($conn, $sql);
 	if($result)
@@ -48,16 +48,24 @@ function crear_solicitud($conn, $res)
 {
 	$idusuario = $_SESSION["usuario"];
 	$idcontacto = $res[0]["id"];
-	$sql = "INSERT INTO solicitudes(idusuario, idcontacto) VALUES ('$idusuario', '$idcontacto')";
-	$idsolicitud = call($conn, $sql, 1);
 
-	return $idsolicitud;
+	$sql = "SELECT * FROM solicitudes WHERE idusuario = '$idusuario' AND idcontacto = '$idcontacto'";
+	$res = call($conn, $sql);
+
+	if(count($res) == 0)
+	{
+		$sql = "INSERT INTO solicitudes(idusuario, idcontacto) VALUES ('$idusuario', '$idcontacto')";
+		$idsolicitud = call($conn, $sql, 1);
+	}
+
+	return $res[0]["idsolicitud"];
 }
 
 function invitar_usuario($conn, $data)
 {
 	$email = $data["email"];
-	$sql = "SELECT * FROM usuarios WHERE username = '$email'";
+	$idusuario = $_SESSION["usuario"];
+	$sql = "SELECT * FROM usuarios WHERE username = '$email' AND id != '$idusuario'";
 	$res = call($conn, $sql);
 	if(count($res) > 0)
 	{
