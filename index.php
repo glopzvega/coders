@@ -253,6 +253,7 @@ if(!isset($_SESSION["login"]))
                 boton.find("i").text("thumb_down");
                 boton.find(".texto").text("Ya no me gusta");              
                 numero_likes = numero_likes + 1;
+                boton.find(".likes").text(numero_likes);
               });
 
             }
@@ -265,11 +266,11 @@ if(!isset($_SESSION["login"]))
                 boton.find("i").text("thumb_up");
                 boton.find(".texto").text("Me gusta");     
                 numero_likes = numero_likes - 1; 
+                boton.find(".likes").text(numero_likes);
 
               });
             }
 
-            boton.find(".likes").text(numero_likes);
           }
 
           mostrar_publicaciones = function(registros)
