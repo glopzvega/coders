@@ -62,6 +62,61 @@ if(isset($_POST["contenido"]))
 		echo json_encode($res);			
 	}
 }
+
+else if(isset($_GET["like"]))
+{
+	if(isset($_GET["id"]))
+	{
+		require_once "conexion.php";
+		$id = $_GET["id"];
+
+		$sql = "SELECT likes FROM publicacion WHERE id = '$id'";
+
+		$result = mysqli_query($conn, $sql);
+		$data = array();
+		if (mysqli_num_rows($result) > 0) {
+	    // output data of each row
+		    while($row = mysqli_fetch_assoc($result)) {			
+				$data[] = $row;
+		    }
+		}
+
+		$numlikes = $data[0]["likes"];
+		$numlikes = (int) $numlikes + 1;
+
+		$sql = "UPDATE publicacion SET likes = '$numlikes' WHERE id = '$id'";
+
+		mysqli_query($conn, $sql);
+	}
+}
+
+else if(isset($_GET["dislike"]))
+{
+	if(isset($_GET["id"]))
+	{
+		require_once "conexion.php";
+		$id = $_GET["id"];
+
+		$sql = "SELECT likes FROM publicacion WHERE id = '$id'";
+
+		$result = mysqli_query($conn, $sql);
+		$data = array();
+		if (mysqli_num_rows($result) > 0) {
+	    // output data of each row
+		    while($row = mysqli_fetch_assoc($result)) {			
+				$data[] = $row;
+		    }
+		}
+
+		$numlikes = $data[0]["likes"];
+		$numlikes = (int) $numlikes - 1;
+
+		$sql = "UPDATE publicacion SET likes = '$numlikes' WHERE id = '$id'";
+
+		mysqli_query($conn, $sql);
+	}
+}
+
 else if(isset($_GET["obtener"]))
 {
 	require_once "conexion.php";

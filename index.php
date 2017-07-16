@@ -292,7 +292,7 @@ if(!isset($_SESSION["login"]))
                   '</div>'
                   ].join("");
 
-                $("#contenedorPublicaciones").prepend(pub).find(".action").on("click", function(e){
+                $("#contenedorPublicaciones").prepend(pub).find(".action").first().on("click", function(e){
                   
                   dar_like($(this));
 
