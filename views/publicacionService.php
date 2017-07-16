@@ -88,6 +88,19 @@ else if(isset($_GET["like"]))
 
 		mysqli_query($conn, $sql);
 
+		$usuario_id = $_SESSION["usuario"];
+		$sql = "SELECT * FROM usuario_likes WHERE idusuario = '$usuario_id' AND idpublicacion = '$id'";
+
+		$data = array();
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) == 0) 
+		{
+	    	$sql = "INSERT INTO usuario_likes (idusuario, idpublicacion) VALUES ('$usuario_id', '$id')";
+	    	mysqli_query($conn, $sql);
+		}
+
+
+
 		$res = array("success" => true);
 		echo json_encode($res);
 	}
@@ -117,6 +130,17 @@ else if(isset($_GET["dislike"]))
 		$sql = "UPDATE publicacion SET likes = '$numlikes' WHERE id = '$id'";
 
 		mysqli_query($conn, $sql);
+
+		$usuario_id = $_SESSION["usuario"];
+		$sql = "SELECT * FROM usuario_likes WHERE idusuario = '$usuario_id' AND idpublicacion = '$id'";
+
+		$data = array();
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) > 0) 
+		{
+			$sql = "DELETE FROM usuario_likes WHERE idusuario = '$usuario_id' AND idpublicacion = '$id'";	    	
+	    	mysqli_query($conn, $sql);
+		}
 
 		$res = array("success" => true);
 		echo json_encode($res);
