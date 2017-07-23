@@ -28,15 +28,53 @@ function call($conn, $sql, $insert="0")
 	return false;
 }
 
+function obtener_datos_usuario($conn, $idusuario)
+{
+	$sql = "SELECT id, nombre, apellido, username FROM usuarios WHERE id = '$idusuario'";
+	$res = call($conn, $sql);
+
+	if(count($res) > 0)
+	{
+		return array("success" => true, "data" => $res);
+	}
+	else
+	{
+		return array("success" => false);
+	}
+}
+
 function obtener_solicitudes($conn)
 {
 	$idusuario = $_SESSION["usuario"];
-	$sql = "SELECT * FROM solicitudes WHERE idusuario='$idusuario' OR idcontacto = '$idusuario'";
+	$sql = "SELECT * FROM solicitudes WHERE idusuario='$idusuario' OR idcontacto = '$idusuario' AND estatus = 0";
 
 	$res = call($conn, $sql);
 
 	if(count($res) > 0)
 	{
+		foreach ($res as $key => $row) {
+
+			$row_idusuario = $row["idusuario"];
+			$row_idcontacto = $row["idcontacto"];
+
+			if($row_idusuario != $idusuario)
+			{
+				$info_usuario = obtener_datos_usuario($conn, $row_idusuario);
+				if($info_usuario["success"])
+				{
+					$res[$key]["idusuario"] = $info_usuario["data"];
+				}
+			}
+			else
+			{
+				$info_contacto = obtener_datos_usuario($conn, $row_idcontacto);
+				if($info_contacto["success"])
+				{
+					$res[$key]["idcontacto"] = $info_contacto["data"];
+				}			
+			}
+		}
+
 		return array("success" => true, "data" => $res);
 	}
 	else
