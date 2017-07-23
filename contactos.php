@@ -121,10 +121,8 @@ if(!isset($_SESSION["login"]))
 
         </div>
         <div class="col s8">
-          
-        </div>
-
-      
+          <div id="listaContactos"></div>
+        </div>      
 
       </div>
 
@@ -143,10 +141,61 @@ if(!isset($_SESSION["login"]))
 
         $(".button-collapse").sideNav();
 
+        mostrar_contactos = function(contactos)
+        {
+          var lista = '<ul class="collection with-header">';
+          lista += '<li class="collection-header"><h4>Contactos</h4></li>';
+
+          if(contactos.length > 0)
+          {           
+
+            $.each(contactos, function(indice, elemento){
+              
+              var usuario = elemento.contacto;
+
+
+              lista += '<li class="collection-item">';
+
+              lista += '<div>';
+
+              lista += '<b>' + usuario["nombre"] + " " + usuario["apellido"] + '</b>';
+              lista += "<br>";
+              lista += usuario["username"];
+
+
+              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
+              lista += '<i class="material-icons">send</i></a>'
+
+              lista += '</div>';
+
+              lista += '</li>';
+
+            });
+          }
+          else
+          {
+            lista += '<li class="collection-item">';
+            lista += '<div>No hay contactos.</div>';
+            lista += '</li>';            
+          }
+
+          lista += '</ul>';
+          $("#listaContactos")
+            .html(lista);                       
+        }
+
         obtener_datos = function()
         {
           $.getJSON("views/contactoService.php?obtener=", function(res){
             console.log(res);
+            if(res.success)
+            {
+              mostrar_contactos(res.data);
+            }
+            else
+            {
+              mostrar_contactos([]);
+            }
           });
         }();
 
