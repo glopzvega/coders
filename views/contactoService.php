@@ -39,7 +39,7 @@ function obtener_datos_usuario($conn, $idusuario)
 	}
 	else
 	{
-		return array("success" => false);
+		return array("success" => false, "error" => "No se pudieron obtener datos del usuario.");
 	}
 }
 
@@ -79,7 +79,7 @@ function obtener_solicitudes($conn)
 	}
 	else
 	{
-		return array("success" => false);
+		return array("success" => false, "error" => "No se encontraron solicitudes pendientes");
 	}
 }
 
@@ -95,7 +95,7 @@ function obtener_contactos($conn)
 	}
 	else
 	{
-		return array("success" => false);
+		return array("success" => false, "error" => "No hay contactos registrados.");
 	}
 }
 

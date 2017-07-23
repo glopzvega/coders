@@ -90,20 +90,43 @@ if(!isset($_SESSION["login"]))
           </ul>
         </div>
       </nav>
+      
 
+      <div class="row">
+        <div class="col s4">
 
-      <form id="InvitarForm" action="">
-        <div class="row">
-          <div class="col s12">            
-            <div class="input-field inline">
-              <input name="email" id="email" type="email" class="validate">
-              <label for="email" data-error="El formato es incorrecto" data-success="right">Email</label>              
-              <button type="submit" class="btn waves-effect waves-light">Invitar</button>
+          <div class="row">
+            <div class="col s12">
+              <form id="InvitarForm" action="">
+                <div class="row">
+                  <div class="col s12">            
+                    <div class="input-field inline">
+                      <input name="email" id="email" type="email" class="validate">
+                      <label for="email" data-error="El formato es incorrecto" data-success="right">Email</label>              
+                      <button type="submit" class="btn waves-effect waves-light">Invitar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
-        </div>
-      </form>
+          <div class="row">
+            <div class="col s12">
+              <div id="listaSolicitud">
+                
+              </div>
+            </div>
+          </div>
+          
 
+        </div>
+        <div class="col s8">
+          
+        </div>
+
+      
+
+      </div>
 
       <!-- <script src="ejemplo.js"></script> -->
 
@@ -142,6 +165,16 @@ if(!isset($_SESSION["login"]))
           });
         }
 
+        mostrar_solicitudes = function(solicitudes)
+        {
+          var lista = '<ul class="collection with-header">';
+          $.each(solicitudes, function(indice, elemento){
+            lista += '<li class="collection-header">' + indice +'</li>'
+          });
+          lista += '</ul>';
+          $("#listaSolicitud").html(lista);
+        }
+
         obtener_solicitudes = function()
         {
           $.getJSON("views/contactoService.php?solicitudes=", function(res){
@@ -149,6 +182,7 @@ if(!isset($_SESSION["login"]))
             if(res.success)
             {
               console.log(res.data);
+              mostrar_solicitudes(res.data);
             }
             else
             {
