@@ -139,6 +139,8 @@ function obtener_datos_solicitud($conn, $idsolicitud)
 	$sql = "SELECT * FROM solicitudes WHERE idsolicitud = '$idsolicitud'";
 	$res = call($conn, $sql);
 
+	// var_dump($sql);
+
 	if(count($res) > 0)
 	{
 		return array("success" => true, "data" => $res);
@@ -153,6 +155,29 @@ function aceptar_solicitud($conn, $idsolicitud)
 {
 	$sql = "UPDATE solicitudes SET estatus='1' WHERE idsolicitud='$idsolicitud'";
 	call($conn, $sql);
+
+	$solicitud = obtener_datos_solicitud($conn, $idsolicitud);
+
+	// echo "<pre>";
+	// var_dump($solicitud);
+	// echo "</pre>";
+
+	if($solicitud["success"])
+	{
+		$solicitud = $solicitud["data"][0];
+		$idusuario = $solicitud["idusuario"];
+		$idcontacto = $solicitud["idcontacto"];
+
+		$sql = "INSERT INTO contactos (idusuario, idcontacto, fecha) VALUES ('$idusuario', '$idcontacto', '".date("Y-m-d")."')";
+		$new_contacto = call($conn, $sql, 1);
+
+		if($new_contacto)
+		{
+			return array("success" => true, "id" => $new_contacto);
+		}
+
+	}
+
 	// echo $sql;
 	return array("success" => true);
 }

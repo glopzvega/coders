@@ -200,15 +200,18 @@ if(!isset($_SESSION["login"]))
             .on("click", function(){
               alert("OK");
               var idsolicitud = $(this).attr("id");
-              aceptar_solicitud(idsolicitud);
+              aceptar_solicitud(idsolicitud, $(this));
             });
 
         }
 
-        aceptar_solicitud = function(idsolicitud)
+        aceptar_solicitud = function(idsolicitud, elem)
         {
           $.getJSON("views/contactoService.php?aceptar=", {"id" : idsolicitud}, function(res){
-            
+            if(res.success)
+            {
+              elem.parents("li").remove();
+            }
           });
         }
 
