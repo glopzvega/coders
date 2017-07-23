@@ -46,7 +46,7 @@ function obtener_datos_usuario($conn, $idusuario)
 function obtener_solicitudes($conn)
 {
 	$idusuario = $_SESSION["usuario"];
-	$sql = "SELECT * FROM solicitudes WHERE idusuario='$idusuario' OR idcontacto = '$idusuario' AND estatus = 0";
+	$sql = "SELECT * FROM solicitudes WHERE idcontacto = '$idusuario' AND estatus = 0";
 
 	$res = call($conn, $sql);
 
@@ -55,24 +55,12 @@ function obtener_solicitudes($conn)
 		foreach ($res as $key => $row) {
 
 			$row_idusuario = $row["idusuario"];
-			$row_idcontacto = $row["idcontacto"];
 
-			if($row_idusuario != $idusuario)
+			$info_usuario = obtener_datos_usuario($conn, $row_idusuario);
+			if($info_usuario["success"])
 			{
-				$info_usuario = obtener_datos_usuario($conn, $row_idusuario);
-				if($info_usuario["success"])
-				{
-					$res[$key]["idusuario"] = $info_usuario["data"];
-				}
-			}
-			else
-			{
-				$info_contacto = obtener_datos_usuario($conn, $row_idcontacto);
-				if($info_contacto["success"])
-				{
-					$res[$key]["idcontacto"] = $info_contacto["data"];
-				}			
-			}
+				$res[$key]["idusuario"] = $info_usuario["data"];
+			}			
 		}
 
 		return array("success" => true, "data" => $res);
@@ -140,6 +128,14 @@ function invitar_usuario($conn, $data)
 	}
 }
 
+function aceptar_solicitud($conn, $idsolicitud)
+{
+	$sql = "UPDATE solicitudes SET estatus='1' WHERE idsolicitud='$idsolicitud'";
+	call($conn, $sql);
+	// echo $sql;
+	return array("success" => true);
+}
+
 $res = array();
 
 if(isset($_GET["obtener"]))
@@ -153,6 +149,10 @@ else if(isset($_GET["invitar"]) && isset($_GET["email"]))
 else if(isset($_GET["solicitudes"]))
 {
 	$res = obtener_solicitudes($conn);
+}
+else if(isset($_GET["aceptar"]) && isset($_GET["id"]))
+{
+	$res = aceptar_solicitud($conn, $_GET["id"]);
 }
 
 echo json_encode($res);

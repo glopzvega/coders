@@ -172,20 +172,20 @@ if(!isset($_SESSION["login"]))
 
           $.each(solicitudes, function(indice, elemento){
             
-            var contacto = elemento.idcontacto[0];
+            var usuario = elemento.idusuario[0];
 
 
             lista += '<li class="collection-item">';
 
             lista += '<div>';
 
-            lista += '<b>' + contacto["nombre"] + " " + contacto["apellido"] + '</b>';
+            lista += '<b>' + usuario["nombre"] + " " + usuario["apellido"] + '</b>';
             lista += "<br>";
             lista += elemento["fecha"];
 
 
-            lista += '<a href="#!" class="secondary-content">'
-            lista += '<i class="material-icons">send</i></a>'
+            lista += '<a id="' + elemento["idsolicitud"] + '" href="#!" class="secondary-content aceptar">'
+            lista += '<i class="material-icons">check</i></a>'
 
             lista += '</div>';
 
@@ -194,7 +194,22 @@ if(!isset($_SESSION["login"]))
 
           });
           lista += '</ul>';
-          $("#listaSolicitud").html(lista);
+          $("#listaSolicitud")
+            .html(lista)
+            .find(".aceptar")
+            .on("click", function(){
+              alert("OK");
+              var idsolicitud = $(this).attr("id");
+              aceptar_solicitud(idsolicitud);
+            });
+
+        }
+
+        aceptar_solicitud = function(idsolicitud)
+        {
+          $.getJSON("views/contactoService.php?aceptar=", {"id" : idsolicitud}, function(res){
+            
+          });
         }
 
         obtener_solicitudes = function()
