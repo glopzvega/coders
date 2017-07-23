@@ -80,11 +80,32 @@ function obtener_solicitudes($conn)
 function obtener_contactos($conn)
 {
 	$idusuario = $_SESSION["usuario"];
-	$sql = "SELECT * FROM contactos WHERE idusuario = '$idusuario'";
+	$sql = "SELECT * FROM contactos WHERE idusuario = '$idusuario' OR idcontacto = '$idusuario'";
 	$res = call($conn, $sql);
 
 	if(count($res) > 0)
 	{
+
+		foreach ($res as $key => $contacto) {
+			
+			if($contacto["idcontacto"] != $idusuario)
+			{
+				$idres = $contacto["idcontacto"];				
+			}
+			else
+			{
+				$idres = $contacto["idusuario"];
+			}
+
+			$info = obtener_datos_usuario($conn, $idres);	
+
+			if($info["success"])
+			{
+				$res[$key]["contacto"] = $info["data"][0];
+			}
+		}
+
+
 		return array("success" => true, "data" => $res);
 	}
 	else
