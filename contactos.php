@@ -168,8 +168,30 @@ if(!isset($_SESSION["login"]))
         mostrar_solicitudes = function(solicitudes)
         {
           var lista = '<ul class="collection with-header">';
+          lista += '<li class="collection-header"><h4>Solicitudes Pendientes</h4></li>';
+
           $.each(solicitudes, function(indice, elemento){
-            lista += '<li class="collection-header">' + indice +'</li>'
+            
+            var contacto = elemento.idcontacto[0];
+
+
+            lista += '<li class="collection-item">';
+
+            lista += '<div>';
+
+            lista += '<b>' + contacto["nombre"] + " " + contacto["apellido"] + '</b>';
+            lista += "<br>";
+            lista += elemento["fecha"];
+
+
+            lista += '<a href="#!" class="secondary-content">'
+            lista += '<i class="material-icons">send</i></a>'
+
+            lista += '</div>';
+
+            lista += '</li>';
+
+
           });
           lista += '</ul>';
           $("#listaSolicitud").html(lista);

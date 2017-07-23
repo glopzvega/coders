@@ -109,7 +109,7 @@ function crear_solicitud($conn, $res)
 
 	if(count($res) == 0)
 	{
-		$sql = "INSERT INTO solicitudes(idusuario, idcontacto) VALUES ('$idusuario', '$idcontacto')";
+		$sql = "INSERT INTO solicitudes(idusuario, idcontacto, fecha) VALUES ('$idusuario', '$idcontacto', '".date("Y-m-d")."')";
 		$idsolicitud = call($conn, $sql, 1);
 		return $idsolicitud;
 	}
