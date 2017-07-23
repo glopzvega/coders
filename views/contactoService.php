@@ -35,6 +35,12 @@ function obtener_datos_usuario($conn, $idusuario)
 
 	if(count($res) > 0)
 	{
+		$nombre = $res[0]["nombre"];
+		$apellido = $res[0]["apellido"];
+
+		$res[0]["nombre"] = utf8_encode($nombre);
+		$res[0]["apellido"] = utf8_encode($apellido);	
+
 		return array("success" => true, "data" => $res);
 	}
 	else
@@ -128,6 +134,21 @@ function invitar_usuario($conn, $data)
 	}
 }
 
+function obtener_datos_solicitud($conn, $idsolicitud)
+{
+	$sql = "SELECT * FROM solicitudes WHERE idsolicitud = '$idsolicitud'";
+	$res = call($conn, $sql);
+
+	if(count($res) > 0)
+	{
+		return array("success" => true, "data" => $res);
+	}
+	else
+	{
+		return array("success" => false);
+	}
+}
+
 function aceptar_solicitud($conn, $idsolicitud)
 {
 	$sql = "UPDATE solicitudes SET estatus='1' WHERE idsolicitud='$idsolicitud'";
@@ -154,6 +175,8 @@ else if(isset($_GET["aceptar"]) && isset($_GET["id"]))
 {
 	$res = aceptar_solicitud($conn, $_GET["id"]);
 }
+
+// var_dump($res);
 
 echo json_encode($res);
 
