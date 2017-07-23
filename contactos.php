@@ -170,29 +170,39 @@ if(!isset($_SESSION["login"]))
           var lista = '<ul class="collection with-header">';
           lista += '<li class="collection-header"><h4>Solicitudes Pendientes</h4></li>';
 
-          $.each(solicitudes, function(indice, elemento){
-            
-            var usuario = elemento.idusuario[0];
+          if(solicitudes.length > 0)
+          {           
+
+            $.each(solicitudes, function(indice, elemento){
+              
+              var usuario = elemento.idusuario[0];
 
 
+              lista += '<li class="collection-item">';
+
+              lista += '<div>';
+
+              lista += '<b>' + usuario["nombre"] + " " + usuario["apellido"] + '</b>';
+              lista += "<br>";
+              lista += elemento["fecha"];
+
+
+              lista += '<a id="' + elemento["idsolicitud"] + '" href="#!" class="secondary-content aceptar tooltipped" data-tooltip="Aceptar Solicitud de Contacto.">'
+              lista += '<i class="material-icons">check</i></a>'
+
+              lista += '</div>';
+
+              lista += '</li>';
+
+            });
+          }
+          else
+          {
             lista += '<li class="collection-item">';
+            lista += '<div>No hay solicitudes pendientes.</div>';
+            lista += '</li>';            
+          }
 
-            lista += '<div>';
-
-            lista += '<b>' + usuario["nombre"] + " " + usuario["apellido"] + '</b>';
-            lista += "<br>";
-            lista += elemento["fecha"];
-
-
-            lista += '<a id="' + elemento["idsolicitud"] + '" href="#!" class="secondary-content aceptar">'
-            lista += '<i class="material-icons">check</i></a>'
-
-            lista += '</div>';
-
-            lista += '</li>';
-
-
-          });
           lista += '</ul>';
           $("#listaSolicitud")
             .html(lista)
@@ -202,7 +212,7 @@ if(!isset($_SESSION["login"]))
               var idsolicitud = $(this).attr("id");
               aceptar_solicitud(idsolicitud, $(this));
             });
-
+          $('.tooltipped').tooltip({position: "right", delay: 200});
         }
 
         aceptar_solicitud = function(idsolicitud, elem)
@@ -211,6 +221,15 @@ if(!isset($_SESSION["login"]))
             if(res.success)
             {
               elem.parents("li").remove();
+              
+              var elementos_lista = $("#listaSolicitud").find("li.collection-item");              
+              if(elementos_lista.length == 0)
+              {
+                var vacio = '<li class="collection-item">';
+                vacio += '<div>No hay solicitudes pendientes.</div>';
+                vacio += '</li>';
+                $("#listaSolicitud > ul").append(vacio);
+              }
             }
           });
         }
@@ -226,7 +245,7 @@ if(!isset($_SESSION["login"]))
             }
             else
             {
-              alert(res.error);
+              mostrar_solicitudes([]);
             }
           });
         }();
