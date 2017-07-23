@@ -142,6 +142,21 @@ if(!isset($_SESSION["login"]))
           });
         }
 
+        obtener_solicitudes = function()
+        {
+          $.getJSON("views/contactoService.php?solicitudes=", function(res){
+            console.log(res);
+            if(res.success)
+            {
+              console.log(res.data);
+            }
+            else
+            {
+              alert(res.error);
+            }
+          });
+        }();
+
 
         $("#InvitarForm").on("submit", function(e){
           e.preventDefault();

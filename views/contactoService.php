@@ -28,6 +28,23 @@ function call($conn, $sql, $insert="0")
 	return false;
 }
 
+function obtener_solicitudes($conn)
+{
+	$idusuario = $_SESSION["usuario"];
+	$sql = "SELECT * FROM solicitudes WHERE idusuario='$idusuario' OR idcontacto = '$idusuario'";
+
+	$res = call($conn, $sql);
+
+	if(count($res) > 0)
+	{
+		return array("success" => true, "data" => $res);
+	}
+	else
+	{
+		return array("success" => false);
+	}
+}
+
 function obtener_contactos($conn)
 {
 	$idusuario = $_SESSION["usuario"];
@@ -94,6 +111,10 @@ if(isset($_GET["obtener"]))
 else if(isset($_GET["invitar"]) && isset($_GET["email"]))
 {
 	$res = invitar_usuario($conn, $_GET);
+}
+else if(isset($_GET["solicitudes"]))
+{
+	$res = obtener_solicitudes($conn);
 }
 
 echo json_encode($res);
