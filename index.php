@@ -62,8 +62,11 @@ if(!isset($_SESSION["login"]))
     <ul class="side-nav" id="mobile-demo">
       <li>
         <div class="row">
-            <div class="col s4">                          
-              <img src="<?php echo APP; ?>/img/logo.png" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">              
+            <div class="col s4">
+              <form id="formLogo" enctype="multipart/form-data">
+                <img src="<?php echo APP; ?>/img/logo.png" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">  
+                <input type="file" name="logo" id="logo" accept="image/*">
+              </form>
             </div>
             <div class="col s8">
               <b class="username">Gerardo A Lopez Vega</b>
@@ -174,6 +177,43 @@ if(!isset($_SESSION["login"]))
            $('#modalPublicacion').modal('open');
           });
 
+          guardarFoto = function()
+          {           
+            var formData = new FormData($("#formLogo")[0]);
+            // $("input[name='avatar']").attr("disabled", true);
+
+            $.ajax({
+                url : "views/perfilService.php?action=foto",
+                message : "",
+                data : formData,       
+                processData: false,
+                contentType: false,
+                cache : false,
+                method : "POST",
+                dataType : "json",
+                success: function(res)
+                {   
+                  if(res.success)
+                  {
+                    
+                      var file = "img/perfiles/" + res.file;
+                      $("#formLogo img").attr("src", file);
+                    
+                    // $("input[name='avatar']").attr("disabled", false);
+                  }
+
+                },
+                error: function(res){  
+                    // $("input[name='avatar']").val(null).attr("disabled", false);
+                    console.log(res);
+                }
+            }); 
+          }
+
+          $("input[name='logo']").on("change", function(){
+            guardarFoto();
+          });
+
           var guardar = function()
           {
             // Esto se utiliza en lugar del serialize() cuando se usen imagene o archivos
@@ -198,7 +238,6 @@ if(!isset($_SESSION["login"]))
                 }
             });  
           }
-
 
           $("#guardarPublicacion").on("click", function(e){
             e.preventDefault();

@@ -166,6 +166,12 @@ if(!isset($_SESSION["login"]))
               lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
               lista += '<i class="material-icons">send</i></a>'
 
+              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
+              lista += '<i class="material-icons">send</i></a>'
+
+              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
+              lista += '<i class="material-icons">send</i></a>'
+
               lista += '</div>';
 
               lista += '</li>';
