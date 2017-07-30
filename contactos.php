@@ -138,7 +138,9 @@ if(!isset($_SESSION["login"]))
           </div>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat mensaje-send">Enviar</a>
+          <a href="#!" class="modal-action waves-effect waves-green btn-flat mensaje-send">Enviar</a>
+
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
         </div>
       </div>
 
@@ -199,7 +201,10 @@ if(!isset($_SESSION["login"]))
           lista += '</ul>';
           $("#listaContactos")
             .html(lista).find(".chat").on("click", function(){
-               $('#modalChat').modal('open');
+                var idUsuario = $(this).attr("id");
+               $('#modalChat').data("id", idUsuario).modal('open');
+                
+                // alert(idUsuario);
             });                       
         }
 
@@ -323,6 +328,10 @@ if(!isset($_SESSION["login"]))
           // alert("ok")
           var mensaje = $("#modalChat").find("#mensaje").val();
           console.log(mensaje)
+
+          var idcontacto = $("#modalChat").data("id");
+          console.log(idcontacto)
+          $("#modalChat").modal("close");
         });
 
         $("#InvitarForm").on("submit", function(e){

@@ -221,6 +221,10 @@ else if(isset($_GET["aceptar"]) && isset($_GET["id"]))
 {
 	$res = aceptar_solicitud($conn, $_GET["id"]);
 }
+else if(isset($_GET["mensaje"]) && isset($_GET["idcontacto"]))
+{
+	$res = enviar_mensaje($conn, $_POST);
+}
 
 // var_dump($res);
 
