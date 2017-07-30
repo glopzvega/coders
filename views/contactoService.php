@@ -203,6 +203,25 @@ function aceptar_solicitud($conn, $idsolicitud)
 	return array("success" => true);
 }
 
+function enviar_mensaje($conn, $data)
+{
+	$idusuario = $_SESSION["usuario"];
+	$idcontacto = $data["idcontacto"];
+	$msj = $data["mensaje"];
+	$fecha = date("Y-m-d");
+
+	$sql = "INSERT INTO notificaciones (idusuario, idcontacto, mensaje, fecha) VALUES ('$idusuario', '$idcontacto', '$msj', '$fecha')";
+
+	$idnewnotificacion = call($conn, $sql, 1);
+
+	if($idnewnotificacion)
+	{
+		return array("success" => true, "id" => $idnewnotificacion);
+	}
+
+	return array("success" => false);
+}
+
 $res = array();
 
 if(isset($_GET["obtener"]))
@@ -221,8 +240,9 @@ else if(isset($_GET["aceptar"]) && isset($_GET["id"]))
 {
 	$res = aceptar_solicitud($conn, $_GET["id"]);
 }
-else if(isset($_GET["mensaje"]) && isset($_GET["idcontacto"]))
+else if(isset($_GET["mensaje"]) && isset($_POST["mensaje"]) && isset($_POST["idcontacto"]))
 {
+	// var_dump($_POST);
 	$res = enviar_mensaje($conn, $_POST);
 }
 

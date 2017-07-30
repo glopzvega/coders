@@ -331,6 +331,16 @@ if(!isset($_SESSION["login"]))
 
           var idcontacto = $("#modalChat").data("id");
           console.log(idcontacto)
+          
+          var params = {
+            "mensaje" : mensaje,
+            "idcontacto" : idcontacto
+          }
+
+          $.post("views/contactoService.php?mensaje=", params, function(res){
+            console.log(res);
+          });
+
           $("#modalChat").modal("close");
         });
 
