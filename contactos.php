@@ -126,6 +126,22 @@ if(!isset($_SESSION["login"]))
 
       </div>
 
+      <!-- Modal Structure -->
+      <div id="modalChat" class="modal">
+        <div class="modal-content">
+          <h4>Nuevo Mensaje</h4>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="mensaje" name="mensaje" class="materialize-textarea"></textarea>
+              <label for="textarea1">Mensaje:</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat mensaje-send">Enviar</a>
+        </div>
+      </div>
+
       <!-- <script src="ejemplo.js"></script> -->
 
       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -140,6 +156,7 @@ if(!isset($_SESSION["login"]))
       <script>
 
         $(".button-collapse").sideNav();
+        $('.modal').modal();
 
         mostrar_contactos = function(contactos)
         {
@@ -163,14 +180,8 @@ if(!isset($_SESSION["login"]))
               lista += usuario["username"];
 
 
-              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
-              lista += '<i class="material-icons">send</i></a>'
-
-              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
-              lista += '<i class="material-icons">send</i></a>'
-
-              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content aceptar">'
-              lista += '<i class="material-icons">send</i></a>'
+              lista += '<a id="' + usuario["id"] + '" href="#!" class="secondary-content chat">'
+              lista += '<i class="material-icons">chat</i></a>'              
 
               lista += '</div>';
 
@@ -187,7 +198,9 @@ if(!isset($_SESSION["login"]))
 
           lista += '</ul>';
           $("#listaContactos")
-            .html(lista);                       
+            .html(lista).find(".chat").on("click", function(){
+               $('#modalChat').modal('open');
+            });                       
         }
 
         obtener_datos = function()
@@ -305,6 +318,12 @@ if(!isset($_SESSION["login"]))
           });
         }();
 
+
+        $(".mensaje-send").on("click", function(){
+          // alert("ok")
+          var mensaje = $("#modalChat").find("#mensaje").val();
+          console.log(mensaje)
+        });
 
         $("#InvitarForm").on("submit", function(e){
           e.preventDefault();
