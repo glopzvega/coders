@@ -7,6 +7,7 @@ class Mensaje extends Basica
 	//Metodo Constructor
 	function __construct($conn)
 	{		
+		// parent llama a la clase padre
 		parent::__construct($conn);
 	}	
 
@@ -15,7 +16,12 @@ class Mensaje extends Basica
 		$idsesion = $this->usuario;
 		$sql = "SELECT * FROM notificaciones WHERE idcontacto = '$idsesion'";
 		$res = $this->call($sql);
-		return $res;
+		if($res && count($res) > 0)
+		{
+			return array("success" => true, "data" => $res);
+		}
+
+		return array("success" => false);
 
 	}
 }
