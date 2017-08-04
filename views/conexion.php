@@ -22,7 +22,8 @@ class Basica
 	function call($sql, $insert="0")
 	{
 		$result = mysqli_query($this->conn, $sql);
-		
+		// var_dump($this->conn);
+		// exit();
 		if($result)
 		{
 			if($insert == 1)

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once "conexion.php";
+require_once "contactoService.php";
 
 class Mensaje extends Basica
 {	
@@ -18,6 +19,15 @@ class Mensaje extends Basica
 		$res = $this->call($sql);
 		if($res && count($res) > 0)
 		{
+			foreach ($res as $idx => $row) {
+				$idusuario = $row["idusuario"];
+				$data = obtener_datos_usuario($this->conn, $idusuario);
+				if($data["success"])
+				{					
+					$res[$idx]["idusuario"] = $data["data"][0];
+				}
+			}
+
 			return array("success" => true, "data" => $res);
 		}
 

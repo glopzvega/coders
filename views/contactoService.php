@@ -247,8 +247,8 @@ else if(isset($_GET["mensaje"]) && isset($_POST["mensaje"]) && isset($_POST["idc
 }
 
 // var_dump($res);
-
-echo json_encode($res);
+if(count($res) > 0)
+	echo json_encode($res);
 
 
 ?>

@@ -17,6 +17,9 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
 				$res = array("success" => true, "mensaje" => "LOGIN EXITOSO");
 				$_SESSION["login"] = true;
 				$_SESSION["usuario"] = $row["id"];
+				$_SESSION["imagen"] = $row["imagen"];
+				$_SESSION["nombre"] = $row["nombre"];
+				$_SESSION["apellido"] = $row["apellido"];
 				echo json_encode($res);
 			}
 			else

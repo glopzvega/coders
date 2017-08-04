@@ -1,3 +1,18 @@
+<?php 
+session_start();
+$imagen = $_SESSION["imagen"];
+
+if(file_exists("img/perfiles/" . $imagen))
+{
+  $logo = APP . "/img/perfiles/" . $imagen;
+}
+else
+{
+  $logo = APP . "/img/logo.png";
+}
+
+?>
+
 <ul id="dropdown1" class="dropdown-content">
   <li><a href="#!" class="pink-text">
     <i class="material-icons">face</i>
@@ -25,7 +40,7 @@
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">      
       <li>
-         <a class='dropdown-button' href='#' data-hover="false" data-activates='ddMensajes'>
+         <a class='dropdown-button' href='#' data-belowOrigin="true" data-activates='ddMensajes'>
          <i class="material-icons right">notifications</i>
          </a>
       </li> 
@@ -36,7 +51,7 @@
         <div class="row">
             <div class="col s4">
               <form id="formLogo" enctype="multipart/form-data">
-                <img src="<?php echo APP; ?>/img/logo.png" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">  
+                <img src="<?php echo $logo; ?>" alt="logo" class="avatar" style="width: 70px; border-radius: 50%;">  
                 <input type="file" name="logo" id="logo" accept="image/*">
               </form>
             </div>
