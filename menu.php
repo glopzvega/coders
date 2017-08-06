@@ -27,12 +27,7 @@ else
 
 <!-- Dropdown Structure -->
 <ul id='ddMensajes' class='dropdown-content'>
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-  <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-  <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+  <li><a href="#!">Sin Mensajes</a></li>  
 </ul>
 
 <nav>
