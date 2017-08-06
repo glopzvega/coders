@@ -2,7 +2,7 @@
 session_start();
 $imagen = $_SESSION["imagen"];
 
-if(file_exists("img/perfiles/" . $imagen))
+if($imagen != "" && file_exists("img/perfiles/" . $imagen))
 {
   $logo = APP . "/img/perfiles/" . $imagen;
 }
@@ -11,6 +11,7 @@ else
   $logo = APP . "/img/logo.png";
 }
 
+// echo $logo;
 ?>
 
 <ul id="dropdown1" class="dropdown-content">
