@@ -40,6 +40,26 @@ if(!isset($_SESSION["login"]))
         <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/main.css">
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
         <script src="<?php echo APPNAME; ?>/js/vendor/modernizr-2.8.3.min.js"></script>
+        <style>
+          .comments
+          {
+            max-height: 200px;
+            overflow: scroll;
+            overflow-x: hidden;
+          }
+          .comment
+          {
+            padding: 1em;            
+          }
+          .comment-text
+          {
+            background-color: #e0f2f1;
+          }
+          .comment-input
+          {
+            display: none;
+          }
+        </style>
     </head>
     <body>        
 
@@ -74,7 +94,7 @@ if(!isset($_SESSION["login"]))
 </div>
 
 <div class="row">
-    <div class="col s4 offset-s4" id="contenedorPublicaciones">
+    <div class="col s6 offset-s3" id="contenedorPublicaciones">
     
     </div>
 </div>
@@ -335,16 +355,58 @@ if(!isset($_SESSION["login"]))
                       '<div class="col s12"> '+publicacion.contenido+' </div>',
                     '</div>',
                     '<div class="row">',
-                      '<div class="col s6">',
+                      '<div class="col s4">',
                         '<a href="javascript:;" class="action ' + clase + ' ' + color + '">',
                           '<i class="material-icons">' + icon + '</i>',
                           '<span class="likes">' + publicacion.likes +'</span>',
                           '<span class="texto">' + texto + '</span>',
                         '</a>',
                       '</div>',
-                      '<div class="col s6 right-align"> '+publicacion.fecha+' </div>',
+
+                      '<div class="col s4">',
+                        '<a href="#" class="comentario">',
+                        '<i class="material-icons">chat_bubble</i>',
+                        'Comentario</a>',
+                      '</div>',
+
+                      '<div class="col s4 right-align"> '+publicacion.fecha+' </div>',
                       '</div>',
                     '</div>',
+
+                    '<div class="row">',
+                      '<div class="col s12 comments">',
+                        
+                        // '<div class="comment comment-text">',
+                        //   '<b><a href="#">User</a></b>',
+                        //   '<span class="right">2017-08-06</span>',
+                        //   '<br>',
+                        //   '<span>comentario1</span>',
+                        // '</div>',
+                        // '<div class="comment comment-text">',
+                        //   '<b><a href="#">User</a></b>',
+                        //   '<span class="right">2017-08-06</span>',
+                        //   '<br>',
+                        //   '<span>comentario1</span>',
+                        // '</div>',
+                        // '<div class="comment comment-text">',
+                        //   '<b><a href="#">User</a></b>',
+                        //   '<span class="right">2017-08-06</span>',
+                        //   '<br>',
+                        //   '<span>comentario1</span>',
+                        // '</div>',                        
+                      '</div>',
+                      '<div class="comment comment-input">',
+                        '<div class="row">',
+                          '<div class="col s10">',
+                            '<input type="text">',
+                          '</div>',
+                          '<div class="col s2">',
+                            '<a href=""><i class="material-icons">check</i></a>',
+                          '</div>',  
+                        '</div>',                          
+                      '</div>',
+                    '</div>',
+
                   '</div>'
                   ].join("");
 
@@ -352,6 +414,13 @@ if(!isset($_SESSION["login"]))
                   
                   dar_like($(this));
 
+                });
+
+                $("#contenedorPublicaciones").find(".comentario").first().on("click", function(e){
+                  e.preventDefault();
+                  console.log("AGREGAR COMENTARIO");
+                  // $(".comment-input").show();
+                  $(".comment-input").toggle();
                 });
             });
 
