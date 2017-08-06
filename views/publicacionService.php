@@ -22,8 +22,9 @@ if(isset($_POST["contenido"]))
 	if($result)
 	{		
 		$last_id = mysqli_insert_id($conn);
-
-		if(count($_FILES) > 0 && isset($_FILES["foto_publicacion"]))
+		// var_dump($_FILES);
+		// exit();
+		if(count($_FILES) > 0 && isset($_FILES["foto_publicacion"]) && $_FILES["foto_publicacion"]!= "")
 		{
 			$tipo_archivo = $_FILES["foto_publicacion"]["type"];
 
@@ -42,6 +43,7 @@ if(isset($_POST["contenido"]))
 			else
 			{
 				echo json_encode(array("success" => false, "error" => "Formato de imagen no aceptado"));
+				exit();
 			}
 
 			$uploadfile = "../publicaciones/" . $nombre_archivo; 
@@ -54,7 +56,7 @@ if(isset($_POST["contenido"]))
 		}
 
 		$res = array("success" => true, "mensaje" => "Se ha registrado correctamente");
-		echo json_encode($res);		
+		echo json_encode($res);				
 	}
 	else
 	{

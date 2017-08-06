@@ -285,9 +285,7 @@ if(!isset($_SESSION["login"]))
                   clase = "dislike";
                   color = "red-text";
                   texto = "Ya no me gusta";
-                }
-
-                publicacion.imagen = "publicaciones/" + publicacion.imagen;
+                }     
 
                 var avatar = publicacion.avatar;
 
@@ -300,12 +298,25 @@ if(!isset($_SESSION["login"]))
                   avatar = "img/perfiles/" + avatar;
                 }
 
+                if(publicacion.imagen != null)
+                {
+                  publicacion.imagen = "publicaciones/" + publicacion.imagen; 
+                  // alert(publicacion.imagen)
+                  var imagen = [
+                    '<div class="card-image waves-effect waves-block waves-light">',
+                      ' <img class="" src="' + publicacion.imagen + '">',
+                    '</div>',
+                  ].join("");
+                }
+                else
+                {
+                  var imagen = "";
+                }
 
+                console.log(imagen)
                 var pub = [
                 '<div class="card" id="publicacion_'+publicacion.id+'">',
-                  '<div class="card-image waves-effect waves-block waves-light">',
-                    ' <img class="" src="' + publicacion.imagen + '">',
-                  '</div>',
+                  imagen,
                   '<div class="card-content">',
                     '<div class="row">',
                       '<div class="col s3 valign-wrapper">',
