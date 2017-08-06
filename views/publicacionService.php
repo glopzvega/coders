@@ -153,13 +153,14 @@ else if(isset($_GET["obtener"]))
 	$usuario_id = $_SESSION["usuario"];
 	
 	// Se le agrega el prefijo al inicio de cada campo para poder diferenciarlos unos de otros ya que puede suceder que tengan el mismo nombre y cause un error por ambiguedad.
-	$sql = "SELECT p.id, u.nombre, u.apellido, p.fecha, p.contenido, p.usuario, p.likes, p.imagen"; 
+	$sql = "SELECT p.id, u.nombre, u.apellido, u.imagen as avatar, p.fecha, p.contenido, p.usuario, p.likes, p.imagen"; 
 
 	// Se consulta de 2 tablas y se define una variable para hacer referencia a cada 1 de ellas p = publicacion y u = usuarios
 	$sql .= " FROM publicacion as p, usuarios as u";
 
 	// Cuando se consultan 2 o más tablas es necesario agregar en el WHERE una condicion que indique la relacion de las columnas en este caso la tabla publicacion->usuario relaciona a la tabla usuario->id  
 	$sql .= " WHERE p.usuario = u.id AND p.usuario = '$usuario_id'";
+	// echo $sql;
 
 	$result = mysqli_query($conn, $sql);
 	$data = array();

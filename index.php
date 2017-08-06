@@ -289,6 +289,18 @@ if(!isset($_SESSION["login"]))
 
                 publicacion.imagen = "publicaciones/" + publicacion.imagen;
 
+                var avatar = publicacion.avatar;
+
+                if(avatar == "")                
+                {
+                  avatar = "img/logo.png";
+                }
+                else
+                {
+                  avatar = "img/perfiles/" + avatar;
+                }
+
+
                 var pub = [
                 '<div class="card" id="publicacion_'+publicacion.id+'">',
                   '<div class="card-image waves-effect waves-block waves-light">',
@@ -297,7 +309,7 @@ if(!isset($_SESSION["login"]))
                   '<div class="card-content">',
                     '<div class="row">',
                       '<div class="col s3 valign-wrapper">',
-                        '<img src="' + publicacion.avatar + '" alt="avatar" style="border-radius: 50%;">',
+                        '<img src="' + avatar + '" alt="avatar" style="border-radius: 50%;">',
                       '</div>',
                       '<div class="col s9">',
                         '<br><b> ' + publicacion.nombre + " " + publicacion.apellido + ' </b>publicó.',
