@@ -49,7 +49,8 @@ if(!isset($_SESSION["login"]))
           }
           .comment
           {
-            padding: 1em;            
+            padding: 0.5em;
+            padding-bottom: 0.2em;            
           }
           .comment-text
           {
@@ -298,8 +299,7 @@ if(!isset($_SESSION["login"]))
             }
 
             $.getJSON("views/comentarioService.php?agregar", data, function(res){
-              if(res.success){
-                $("#publicacion_" + id).find(".comentario-form").val("");                
+              if(res.success){                               
                 obtener_comentarios(id);
               }
             });
@@ -319,7 +319,10 @@ if(!isset($_SESSION["login"]))
                     comments += '<span>' + com.comentario +'</span>';
                     comments += '</div>';
                 });
+
                 $("#publicacion_" + idpublicacion).find(".comments").html(comments);
+
+                $("#publicacion_" + idpublicacion).find(".comentario-form").val(""); 
               }
             });
           }
