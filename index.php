@@ -302,6 +302,25 @@ if(!isset($_SESSION["login"]))
             });
           }
 
+          obtener_comentarios = function(idpublicacion)
+          {            
+            $.getJSON("views/comentarioService.php?obtener", {"idpublicacion" : idpublicacion}, function(res){
+              console.log(res);
+              if(res.success){
+                var comments = "";
+                $.each(res.data, function(index, com){
+                    comments += '<div class="comment comment-text">';
+                    comments += '<b><a href="#">' + com.username + '</a></b>';
+                    comments += '<span class="right">' + com.fecha +'</span>';
+                    comments += '<br>';
+                    comments += '<span>' + com.comentario +'</span>';
+                    comments += '</div>';
+                });
+                $("#publicacion_" + idpublicacion).find(".comments").html(comments);
+              }
+            });
+          }
+
           mostrar_publicaciones = function(registros)
           {
               // alert("Se recibieron los datos");
@@ -450,6 +469,8 @@ if(!isset($_SESSION["login"]))
                   console.log(comentario);
                   enviar_comentario(idpublicacion, comentario);
                 });
+
+                obtener_comentarios(publicacion.id);
             });
 
           }
