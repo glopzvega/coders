@@ -9,6 +9,20 @@ class Comentario extends Basica
 		parent::__construct($conn);
 	}
 
+	function obtener($data)
+	{
+		$id = $data["idpublicacion"];
+		$sql = "SELECT * FROM comentarios as c, usuarios as u WHERE idpublicacion = $id AND c.idusuario = u.id";
+		$res = $this->call($sql);
+
+		if($res && count($res)>0)
+		{
+			return array("success" => true, "data" => $res);
+		}
+
+		return array("success" => false);
+	}
+
 	function agregar($data)
 	{
 		$usuario = $this->usuario;
@@ -34,6 +48,10 @@ $obj = new Comentario($conn);
 if(isset($_GET["agregar"]))
 {
 	$res = $obj->agregar($_GET);
+}
+else if(isset($_GET["obtener"]))
+{
+	$res = $obj->obtener($_GET);
 }
 
 echo json_encode($res);
