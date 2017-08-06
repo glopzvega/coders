@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-08-2017 a las 00:36:54
+-- Tiempo de generación: 06-08-2017 a las 12:42:31
 -- Versión del servidor: 5.7.19-0ubuntu0.16.04.1
 -- Versión de PHP: 5.6.30-11+deb.sury.org~xenial+3
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `coders`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL,
+  `idpublicacion` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `idusuario`, `idpublicacion`, `comentario`, `fecha`) VALUES
+(1, 1, 34, 'hola', '2017-08-06'),
+(2, 1, 28, 'algo', '2017-08-06');
 
 -- --------------------------------------------------------
 
@@ -92,7 +114,12 @@ INSERT INTO `publicacion` (`id`, `usuario`, `fecha`, `contenido`, `likes`, `imag
 (31, 1, '2017-07-02', 'nueva', 1, '31.jpg'),
 (32, 1, '2017-07-02', 'nueva2', 0, '32.jpg'),
 (33, 1, '2017-07-02', 'dhbvsadkfsdhs.s.', 0, '33.jpg'),
-(34, 1, '2017-07-16', 'LOL', 0, '34.jpg');
+(34, 1, '2017-07-16', 'LOL', 0, '34.jpg'),
+(35, 4, '2017-08-06', 'EJEMPLO', 0, '35.jpg'),
+(36, 4, '2017-08-06', 'HHOLA', 0, NULL),
+(37, 4, '2017-08-06', 'ADIOS', 0, NULL),
+(38, 4, '2017-08-06', 'PRUEBA 2', 1, NULL),
+(39, 4, '2017-08-06', 'TEST 3', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -138,7 +165,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `username`, `password`, `fecha`, `nombre`, `apellido`, `imagen`) VALUES
 (1, 'mcgalv@gmail.com', '123456', '2017-06-18', 'Gerardo', 'Lopez', '1.jpg'),
-(4, 'morgan@gmail.com', '123456', '2017-07-16', 'Morgan', 'Viñal', ''),
+(4, 'morgan@gmail.com', '123456', '2017-07-16', 'Morgan', 'Vinal', '4.jpg'),
 (5, 'michael@gmail.com', '123456', '2017-07-23', 'Michael', 'Villanueva', '');
 
 -- --------------------------------------------------------
@@ -158,11 +185,19 @@ CREATE TABLE `usuario_likes` (
 
 INSERT INTO `usuario_likes` (`idusuario`, `idpublicacion`) VALUES
 (1, 28),
-(1, 31);
+(1, 31),
+(4, 39),
+(4, 38);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `notificaciones`
@@ -193,6 +228,11 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
@@ -201,7 +241,7 @@ ALTER TABLE `notificaciones`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
