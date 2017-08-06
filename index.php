@@ -298,7 +298,10 @@ if(!isset($_SESSION["login"]))
             }
 
             $.getJSON("views/comentarioService.php?agregar", data, function(res){
-
+              if(res.success){
+                $("#publicacion_" + id).find(".comentario-form").val("");                
+                obtener_comentarios(id);
+              }
             });
           }
 
@@ -407,25 +410,6 @@ if(!isset($_SESSION["login"]))
 
                     '<div class="row">',
                       '<div class="col s12 comments">',
-                        
-                        // '<div class="comment comment-text">',
-                        //   '<b><a href="#">User</a></b>',
-                        //   '<span class="right">2017-08-06</span>',
-                        //   '<br>',
-                        //   '<span>comentario1</span>',
-                        // '</div>',
-                        // '<div class="comment comment-text">',
-                        //   '<b><a href="#">User</a></b>',
-                        //   '<span class="right">2017-08-06</span>',
-                        //   '<br>',
-                        //   '<span>comentario1</span>',
-                        // '</div>',
-                        // '<div class="comment comment-text">',
-                        //   '<b><a href="#">User</a></b>',
-                        //   '<span class="right">2017-08-06</span>',
-                        //   '<br>',
-                        //   '<span>comentario1</span>',
-                        // '</div>',                        
                       '</div>',
                       '<div class="comment comment-input">',
                         '<div class="row">',
