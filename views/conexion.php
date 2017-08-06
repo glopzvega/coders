@@ -15,7 +15,7 @@ class Basica
 {
 	function __construct($conn)
 	{
-		$this->usuario = 4; //$_SESSION["usuario"];
+		$this->usuario = $_SESSION["usuario"];
 		$this->conn = $conn;
 	}
 
