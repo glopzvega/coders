@@ -289,6 +289,19 @@ if(!isset($_SESSION["login"]))
 
           }
 
+          enviar_comentario = function(id, comment)
+          {
+            var data = 
+            {
+              "idpublicacion" : id,
+              "comentario" : comment
+            }
+
+            $.getJSON("views/comentarioService.php?agregar", data, function(res){
+
+            });
+          }
+
           mostrar_publicaciones = function(registros)
           {
               // alert("Se recibieron los datos");
@@ -369,7 +382,7 @@ if(!isset($_SESSION["login"]))
                         'Comentario</a>',
                       '</div>',
 
-                      '<div class="col s4 right-align"> '+publicacion.fecha+' </div>',
+                      '<div class="col s4 right-align"> '+publicacion.fecha,
                       '</div>',
                     '</div>',
 
@@ -398,10 +411,10 @@ if(!isset($_SESSION["login"]))
                       '<div class="comment comment-input">',
                         '<div class="row">',
                           '<div class="col s10">',
-                            '<input type="text">',
+                            '<input type="text" class="comentario-form">',
                           '</div>',
                           '<div class="col s2">',
-                            '<a href=""><i class="material-icons">check</i></a>',
+                            '<a href="" class="comentar"><i class="material-icons">check</i></a>',
                           '</div>',  
                         '</div>',                          
                       '</div>',
@@ -421,6 +434,21 @@ if(!isset($_SESSION["login"]))
                   console.log("AGREGAR COMENTARIO");
                   // $(".comment-input").show();
                   $(".comment-input").toggle();
+                });
+
+                $("#contenedorPublicaciones").find(".comentar").first().on("click", function(e){
+                  e.preventDefault();
+                  
+                  var idpublicacion = $(this).parents(".card").attr("id");
+                  idpublicacion = idpublicacion.split("_")[1];
+                  
+                  console.log(idpublicacion)
+                  var comentario = $(this).parents(".card").find(".comentario-form").val();
+
+                  // .siblings()
+
+                  console.log(comentario);
+                  enviar_comentario(idpublicacion, comentario);
                 });
             });
 
