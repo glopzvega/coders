@@ -12,10 +12,26 @@ class Mensaje extends Basica
 		parent::__construct($conn);
 	}	
 
+	function marcar_leido($idnotificacion)
+	{
+		$sql = "UPDATE notificaciones SET estatus='2' WHERE idnotificacion = '$idnotificacion'";
+		$this->call($sql);
+
+		$sql = "SELECT * FROM notificaciones WHERE idnotificacion = '$idnotificacion' AND estatus = '2'";
+		$res = $this->call($sql);
+
+		if($res && count($res)>0)
+		{
+			return array("success" => true);
+		}
+
+		return array("success" => false);
+	}
+
 	function obtener_mensajes()
 	{
 		$idsesion = $this->usuario;
-		$sql = "SELECT * FROM notificaciones WHERE idcontacto = '$idsesion'";
+		$sql = "SELECT * FROM notificaciones WHERE idcontacto = '$idsesion' AND estatus = '1'";
 		$res = $this->call($sql);
 		if($res && count($res) > 0)
 		{
@@ -43,6 +59,11 @@ if(isset($_GET["mensajes"]))
 {
 	$res = $obj->obtener_mensajes();
 }
+else if(isset($_GET["leido"]) && isset($_GET["idnotificacion"]))
+{
+	$res = $obj->marcar_leido($_GET["idnotificacion"]);
+}
+
 
 echo json_encode($res);
 
