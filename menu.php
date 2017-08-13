@@ -62,11 +62,11 @@ else
           <i class="material-icons orange-text darken-1">star</i> Favoritos
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="">
           <i class="material-icons blue-text">image</i> Fotos
         </a>
-      </li>
+      </li> -->
       <li>
         <a href="contactos.php">
           <i class="material-icons green-text darken-1">person</i> Contactos

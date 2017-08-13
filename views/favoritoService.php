@@ -11,11 +11,29 @@ class Publicacion extends Basica
 
 	function obtener_datos_publicacion($idpublicacion)
 	{
-		$sql = "SELECT * FROM publicacion as p, usuarios as u WHERE p.id = '$idpublicacion' AND p.usuario = u.id";
+		$sql = "SELECT * FROM publicacion WHERE id = '$idpublicacion'";
 		// echo $sql;
 		// exit();
 		$res = $this->call($sql);
 
+		if($res && count($res) > 0)
+		{
+			foreach ($res as $key => $value) {
+				$idusuario = $value["usuario"];
+				$sql = "SELECT * FROM usuarios WHERE id = '$idusuario'";
+
+				$usuarios = $this->call($sql);
+				// echo $sql;
+				// var_dump($usuarios);
+
+				if($usuarios && count($usuarios) > 0)
+				{
+					$res[$key]["nombre"] = $usuarios[0]["nombre"];
+					$res[$key]["apellido"] = $usuarios[0]["apellido"];
+					$res[$key]["avatar"] = $usuarios[0]["avatar"];
+				}
+			}
+		} 
 		return $res;
 	}
 

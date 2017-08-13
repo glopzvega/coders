@@ -356,7 +356,7 @@ if(!isset($_SESSION["login"]))
 
                 var avatar = publicacion.avatar;
 
-                if(avatar == "")                
+                if(avatar == "" || avatar == null)                
                 {
                   avatar = "img/logo.png";
                 }
