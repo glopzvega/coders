@@ -6,6 +6,9 @@ session_start();
 // var_dump($_SESSION);
 // echo "</pre>"; 
 // exit();
+$favoritos = "";
+if(isset($_GET["favoritos"]))
+  $favoritos = "1";
 
 if(!isset($_SESSION["login"]))
 {
@@ -124,7 +127,7 @@ if(!isset($_SESSION["login"]))
     </div>
   </div>
 
-
+        
         <!-- <script src="ejemplo.js"></script> -->
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -146,6 +149,8 @@ if(!isset($_SESSION["login"]))
         </script>
 
         <script>
+
+          var favoritos = "<?php echo $favoritos; ?>";
 
           $(".button-collapse").sideNav();
 
@@ -464,7 +469,12 @@ if(!isset($_SESSION["login"]))
 
           obtener_publicaciones = function()
           {
-            $.getJSON("views/publicacionService.php?obtener", function(res){
+            var path = "views/publicacionService.php?obtener";
+            if(favoritos != "")
+            {
+              var path = "views/favoritoService.php?obtener";
+            }
+            $.getJSON(path, function(res){
               console.log(res);
 
               if(res.success == true)

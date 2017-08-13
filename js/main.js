@@ -5,14 +5,23 @@ $.getJSON("views/mensajeService.php?mensajes", function(res){
 		var opts = "";
 		$.each(res.data, function(index, elem){
 			opts += "<li>";
-			opts += "<a>";
+			opts += "<a class='notificacion' idnotificacion='"+elem.idnotificacion+"'>";
 			opts += "<b>" + elem.idusuario.username + "</b>"
 			opts += "<br>" + elem.mensaje 
+			opts += "<i class='material-icons right leer'>check</i>"
 			opts += "</a>";
 			opts += "</li>";
 		});
 
-		$("#ddMensajes").html(opts);
+		$("#ddMensajes").html(opts).find(".leer").on("click", function(){
+			var notificacion = $(this).parents(".notificacion");
+			var idnotificacion = notificacion.attr("idnotificacion");
+
+			$.getJSON("views/mensajeService.php?leido", {id : idnotificacion}, function(res){
+				console.log(res);
+				notificacion.parent().remove();
+			});
+		});
 	}
 });
 

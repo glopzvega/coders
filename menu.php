@@ -40,7 +40,7 @@ else
          <i class="material-icons right">notifications</i>
          </a>
       </li> 
-      <li><a class="dropdown-button" href="#!" data-hover="false" data-activates="dropdown1">Gerardo Lopez<i class="material-icons right">arrow_drop_down</i></a></li>   
+      <li><a class="dropdown-button" href="#!" data-hover="false" data-activates="dropdown1"><?php echo $_SESSION["nombre"] . " " . $_SESSION["apellido"]; ?><i class="material-icons right">arrow_drop_down</i></a></li>   
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li>
@@ -58,7 +58,7 @@ else
         </div>
       </li>  
       <li>
-        <a href="">
+        <a href="index.php?favoritos">
           <i class="material-icons orange-text darken-1">star</i> Favoritos
         </a>
       </li>

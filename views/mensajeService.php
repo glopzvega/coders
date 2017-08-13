@@ -59,9 +59,9 @@ if(isset($_GET["mensajes"]))
 {
 	$res = $obj->obtener_mensajes();
 }
-else if(isset($_GET["leido"]) && isset($_GET["idnotificacion"]))
+else if(isset($_GET["leido"]) && isset($_GET["id"]))
 {
-	$res = $obj->marcar_leido($_GET["idnotificacion"]);
+	$res = $obj->marcar_leido($_GET["id"]);
 }
 
 
