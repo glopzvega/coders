@@ -1,4 +1,4 @@
 <?php 
-	define("APPNAME", "/coders");
+	define("APPNAME", "/");
 	// define("APP", "/coders-new");
 ?>
