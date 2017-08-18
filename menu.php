@@ -19,7 +19,7 @@ else
     <i class="material-icons">face</i>
     Mi Perfil</a></li> -->  
   <li class="divider"></li>
-  <li><a href="<?php echo APP; ?>/login.php" class="pink-text">
+  <li><a href="login.php" class="pink-text">
     <i class="material-icons">flight_takeoff</i>
     Salir</a></li>
 </ul>

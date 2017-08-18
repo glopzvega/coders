@@ -15,15 +15,15 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
 
-        <link rel="apple-touch-icon" href="<?php echo APPNAME; ?>/apple-touch-icon.png">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/normalize.css">
-        <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/materialize.min.css">
-        <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/font-awesome.min.css">
-        <link rel="stylesheet" href="<?php echo APPNAME; ?>/css/main.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-        <script src="<?php echo APPNAME; ?>/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>        
 
@@ -36,7 +36,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
           
       <div class="row">
           <div class="col m5 offset-m1 hide-on-small-only">
-              <img src="<?php echo APPNAME; ?>/img/iphone.png" alt="Iphone">
+              <img src="img/iphone.png" alt="Iphone">
           </div>
           <div class="col m5 s12">
               <div class="row">
@@ -75,7 +75,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
                     </div>
                     <div class="row">
                         <div class="col s12 center-align">
-                            o <a href="<?php echo APPNAME; ?>/registro.php">Crea una cuenta</a>
+                            o <a href="registro.php">Crea una cuenta</a>
                         </div>
                     </div>
                   </form>
@@ -89,10 +89,10 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
 
-    <script>window.jQuery || document.write('<script src="<?php echo APPNAME; ?>/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <script src="<?php echo APPNAME; ?>/js/plugins.js"></script>
-    <script src="<?php echo APPNAME; ?>/js/materialize.min.js"></script>
-    <script src="<?php echo APPNAME; ?>/js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
