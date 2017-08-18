@@ -11,7 +11,7 @@ if(!isset($_SESSION["login"]))
 {
   echo "<script>location.href='login.php';</script>;";
 }
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/coders/config.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/config.php";
 
     $module = "home";
     if(isset($_GET["module"]) && $_GET["module"] != "")
@@ -19,7 +19,7 @@ if(!isset($_SESSION["login"]))
       $module = $_GET["module"];
     }    
 
-    define("APP", "/coders");
+    // define("APP", "/coders");
 
 ?>
 <!doctype html>
