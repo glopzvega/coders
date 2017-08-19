@@ -1,8 +1,18 @@
 <?php 
-$servername = "localhost";
-$username = "coders";
-$password = "coders";
-$dbname = "coders";
+
+
+// Database Heroku Coders
+// Username:	b0e06265a53624
+// Password:	56bb98e5 (Reset)
+// Host: us-cdbr-iron-east-05.cleardb.net
+// Database: heroku_d9c5270f8dacfa8
+
+
+
+$servername = "us-cdbr-iron-east-05.cleardb.net";
+$username = "b0e06265a53624";
+$password = "56bb98e5";
+$dbname = "heroku_d9c5270f8dacfa8";
 $puerto = "3636";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
